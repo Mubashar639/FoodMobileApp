@@ -5,7 +5,30 @@ import Swiper from "react-native-swiper";
 // assets
 //import bording1Image from '../assets/images/On Boarding 1.png'
 
+const postArry = [
+  {
+    upperText:
+      "L.I.T can help you easily and conveniently find transportation to visit your incarcerated loved ones",
+    imageSrc: require("../assets/images/OnBoardingE1.png"),
+    lowerText:
+      " When a loved one becaome incarcerated it not only affects them,but also may be an overwhelming time for the family. You want tohelp your loved one as much as you can during this difficulttime but may not know where to start"
+  },
+  {
+    upperText: " Bring a little bit of home & hope",
+    imageSrc: require("../assets/images/OnBoardingE2.png"),
+    lowerText:
+      " With Our Care Package you can Conveniently puchase fresh fruits.vegetables,prepared foods, canned goods,snacks,candy & drinks to give your loved one one your visit"
+  },
+  {
+    upperText: " Punctual, Professional & Polite",
+    imageSrc: require("../assets/images/OnBoardingE3.png"),
+    lowerText:
+      "L.I.T professional carriers will hand pick your order, Package and deliver it to you! Hassle free"
+  }
+];
+
 const Introduction = props => {
+  const [posts, setPosts] = useState(postArry);
   const [indexNo, setIndexNo] = useState(0);
   return (
     <View style={styles.container}>
@@ -14,7 +37,6 @@ const Introduction = props => {
           dotStyle={styles.dotStyle}
           activeDotStyle={styles.activeDotStyle}
           style={styles.wrapper}
-          index={indexNo}
           onIndexChanged={index => {
             setIndexNo(index);
           }}
@@ -33,122 +55,51 @@ const Introduction = props => {
             </View>
           }
         >
-          {/* slide1 */}
-          <View style={styles.slide1}>
-            {/* topText */}
-            <View style={styles.topTextContainer}>
-              <Button
-                onPress={() => Alert.alert("ther")}
-                style={styles.skipButton}
-                small
-                transparent
-              >
-                <Text>skip</Text>
-              </Button>
-              <Text style={styles.topText}>
-                L.I.T can help you easily and conveniently find transportation
-                to visit your incarcerated loved ones
-              </Text>
+          {posts.map((post, index) => (
+            <View key={index} style={styles.slide1}>
+              {/* topText */}
+              <View style={styles.topTextContainer}>
+                {index !== 2 ? (
+                  <Button
+                    onPress={() => props.navigation.navigate("FacilitiesList")}
+                    style={styles.skipButton}
+                    small
+                    transparent
+                  >
+                    <Text>skip</Text>
+                  </Button>
+                ) : null}
+                <Text style={styles.topText}>{post.upperText}</Text>
+              </View>
+              {/* image */}
+              <View style={styles.imageStyle}>
+                <Image source={post.imageSrc} style={styles.backgroundImage} />
+              </View>
+              {/* bottom text */}
+              <View style={styles.bottomTextContainer}>
+                <Text style={styles.bottomText}>{post.lowerText}</Text>
+                {index == 2 ? (
+                  <Button
+                    onPress={() => props.navigation.navigate("FacilitiesList")}
+                    style={styles.conButton}
+                    bordered
+                    rounded
+                  >
+                    <Text>get started</Text>
+                  </Button>
+                ) : (
+                  <Button
+                    // onPress={() => setIndexNo(indexNo + 1)}
+                    style={styles.conButton}
+                    bordered
+                    rounded
+                  >
+                    <Text>continue</Text>
+                  </Button>
+                )}
+              </View>
             </View>
-            {/* image */}
-            <View style={styles.imageStyle}>
-              <Image
-                source={require("../assets/images/OnBoardingE1.png")}
-                style={styles.backgroundImage}
-              />
-            </View>
-            {/* bottom text */}
-            <View style={styles.bottomTextContainer}>
-              <Text style={styles.bottomText}>
-                When a loved one becaome incarcerated it not only affects them,
-                but also may be an overwhelming time for the family. You want to
-                help your loved one as much as you can during this difficult
-                time but may not know where to start
-              </Text>
-
-              <Button
-                // onPress={() => setIndexNo(indexNo + 1)}
-                style={styles.conButton}
-                bordered
-                rounded
-              >
-                <Text>continue</Text>
-              </Button>
-            </View>
-          </View>
-          {/* slide2 */}
-          <View style={styles.slide2}>
-            {/* topText */}
-            <View style={styles.topTextContainer}>
-              <Button
-                onPress={() => Alert.alert("ther")}
-                style={styles.skipButton}
-                small
-                transparent
-              >
-                <Text>skip</Text>
-              </Button>
-              <Text style={styles.topText}>
-                Bring a little bit of home & hope
-              </Text>
-            </View>
-            {/* image */}
-            <View style={styles.imageStyle}>
-              <Image
-                source={require("../assets/images/OnBoardingE2.png")}
-                style={styles.backgroundImage}
-              />
-            </View>
-            {/* bottom text */}
-            <View style={styles.bottomTextContainer}>
-              <Text style={styles.bottomText}>
-                With Our Care Package you can Conveniently puchase fresh fruits.
-                vegetables,prepared foods, canned goods,snacks,candy & drinks to
-                give your loved one one your visit
-              </Text>
-
-              <Button
-                // onPress={() => setIndexNo(indexNo + 1)}
-                style={styles.conButton}
-                bordered
-                rounded
-              >
-                <Text>continue</Text>
-              </Button>
-            </View>
-          </View>
-          {/* slide3 */}
-          <View style={styles.slide3}>
-            {/* topText */}
-            <View style={styles.topTextContainer}>
-              <Text style={styles.topText}>
-                Punctual, Professional & Polite
-              </Text>
-            </View>
-            {/* image */}
-            <View style={styles.imageStyle}>
-              <Image
-                source={require("../assets/images/OnBoardingE3.png")}
-                style={styles.backgroundImage}
-              />
-            </View>
-            {/* bottom text */}
-            <View style={styles.bottomTextContainer}>
-              <Text style={styles.bottomText}>
-                L.I.T professional carriers will hand pick your order, Package
-                and deliver it to you! Hassle free
-              </Text>
-                <Button
-                  onPress={() => props.navigation.navigate("Bording2")}
-                  style={styles.conButton}
-                  bordered
-                  rounded
-                >
-                  <Text>get started</Text>
-                </Button>
-              
-            </View>
-          </View>
+          ))}
         </Swiper>
       </View>
     </View>

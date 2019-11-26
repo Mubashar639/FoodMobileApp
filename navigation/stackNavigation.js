@@ -2,27 +2,23 @@
 import { createStackNavigator } from 'react-navigation-stack';
 
 //Import Screens
-import IntroScreen from '../screens/IntroScreen';
-import Bording2Screen from '../screens/Bording2Screen';
-import Bording3Screen from '../screens/Bording3Screen';
+import IntroScreen from '../screens/IntroScreen'
+import FacilitiesListScreen from '../screens/FacilitiesListScreen';
 
 
  
 const AppStackNavigator = createStackNavigator({
   
-  Home: {
+  Intro: {
     screen: IntroScreen,
   },
- Bording2: {
-    screen: Bording2Screen,
-  },
- Bording3: {
-    screen: Bording3Screen,
+  FacilitiesList: {
+    screen: FacilitiesListScreen,
   },
 
 },
    {
-    initialRouteName: 'Home',
+    initialRouteName: 'Intro',
   });
 
 export default  AppStackNavigator;
