@@ -3,10 +3,10 @@ import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
 
 //Import Components
-import FacilitiesList from "../components/FacilitiesListComponent";
-import FacilitiesHeader from '../headers/FacilitiesListHeader'
+import MyCarePackages from "../components/MyCarePackagesComponent";
+import MyCarePackagesHeader from '../headers/MyCarePackagesHeader'
 
-class FacilitiesListScreen extends React.Component {
+class MyCarePackagesScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "FACILITIES",
@@ -24,11 +24,11 @@ class FacilitiesListScreen extends React.Component {
         />
       ),
 
-      headerTitle: () => <FacilitiesHeader />,
+      headerTitle: () => <MyCarePackagesHeader />,
     };
   };
   render() {
-    return <FacilitiesList navigation={this.props.navigation} />;
+    return <MyCarePackages navigation={this.props.navigation} />;
   }
 }
 
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default FacilitiesListScreen;
+export default MyCarePackagesScreen;
