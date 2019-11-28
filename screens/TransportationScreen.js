@@ -9,7 +9,7 @@ import TransportationHeader from '../headers/TransportationHeader'
 class TransportationScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: "FACILITIES",
+      title: "TRANSPORTAION",
       headerStyle: {
         backgroundColor: "#fceccf",
         height: 80

@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   arrows: {
     position: "absolute",
     top: 15,
-    right: 20
+    right: 20,
   }
 });
 

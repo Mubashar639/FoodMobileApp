@@ -94,7 +94,7 @@ const Introduction = props => {
                     bordered
                     rounded
                   >
-                    <Text>continue</Text>
+                    <Text style = {{textAlign:'center'}}>continue</Text>
                   </Button>
                 )}
               </View>
@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
     paddingLeft: 17,
     width: 150,
     position: "absolute",
-    bottom: -15
+    bottom: -15,
+    textAlign:'center'
   },
   nextButtonContainer: {
     width: 150,
