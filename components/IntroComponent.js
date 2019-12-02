@@ -61,7 +61,7 @@ const Introduction = props => {
               <View style={styles.topTextContainer}>
                 {index !== 2 ? (
                   <Button
-                    onPress={() => props.navigation.navigate("FacilitiesList")}
+                    onPress={() => props.navigation.navigate("Home")}
                     style={styles.skipButton}
                     small
                     transparent
@@ -80,7 +80,7 @@ const Introduction = props => {
                 <Text style={styles.bottomText}>{post.lowerText}</Text>
                 {index == 2 ? (
                   <Button
-                    onPress={() => props.navigation.navigate("FacilitiesList")}
+                    onPress={() => props.navigation.navigate("Home")}
                     style={styles.conButton}
                     bordered
                     rounded
