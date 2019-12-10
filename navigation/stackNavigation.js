@@ -12,29 +12,31 @@ import RulesScreen from "../screens/RulesScreen";
 import ProductsScreen from "../screens/ProductsScreen";
 import AuthScreen from "../screens/AuthScreen";
 import HomeScreen from "../screens/HomeScreen";
+import Demo from "../screens/Demo";
 
 const AppStackNavigator = createStackNavigator(
   {
     Intro: {
-      screen: IntroScreen
-    },
-    Home: {
-      screen: HomeScreen
-    },
-    FacilitiesSearch: {
       screen: TransportationSearchScreen
+      // screen: Demo
     },
-    Transport: {
-      screen: TransportationScreen
-    },
-    Rules: {
-      screen: RulesScreen
-    },
-    Products: {
-      screen: ProductsScreen
-    },
-    FacilitiesList: {
-      screen: FacilitiesListScreen
+    // Home: {
+    //   screen: HomeScreen
+    // },
+    // FacilitiesSearch: {
+    //   screen: TransportationSearchScreen
+    // },
+    // Transport: {
+    //   screen: TransportationScreen
+    // },
+    // Rules: {
+    //   screen: RulesScreen
+    // },
+    // Products: {
+    //   screen: ProductsScreen
+    // },
+    // FacilitiesList: {
+      // screen: FacilitiesListScreen
       // screen: MyCarePackagesScreen,
       // screen: TransportationScreen,
       // screen: TransportationSearchScreen,
@@ -44,13 +46,13 @@ const AppStackNavigator = createStackNavigator(
       // screen: ProductsScreen,
       // screen: AuthScreen,
       // screen: HomeScreen
-    },
-    Payments: {
-      screen: PaymentsScreen
-    },
-    Orders: {
-      screen: MyCarePackagesScreen
-    }
+    // },
+    // Payments: {
+    //   screen: PaymentsScreen
+    // },
+    // Orders: {
+    //   screen: MyCarePackagesScreen
+    // }
   },
   {
     initialRouteName: "Intro"

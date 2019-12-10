@@ -1,10 +1,21 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+  Dimensions
+} from "react-native";
 import { Container, Content, Button, Text, Center } from "native-base";
 import Swiper from "react-native-swiper";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 // assets
 //import bording1Image from '../assets/images/On Boarding 1.png'
-
+const { height, width } = Dimensions.get("window");
 const postArry = [
   {
     upperText:
@@ -49,54 +60,55 @@ const Introduction = props => {
             // flex: 1,
           }}
           prevButton={<Text></Text>}
-          nextButton={
-            <View style={styles.nextButtonContainer}>
-              <Text style={styles.buttonText}>Next</Text>
-            </View>
-          }
+          nextButton={<Text style={styles.nextButtonContainer}>Next</Text>}
         >
           {posts.map((post, index) => (
             <View key={index} style={styles.slide1}>
               {/* topText */}
               <View style={styles.topTextContainer}>
-                {index !== 2 ? (
-                  <Button
-                    onPress={() => props.navigation.navigate("Home")}
-                    style={styles.skipButton}
-                    small
-                    transparent
-                  >
-                    <Text>skip</Text>
-                  </Button>
-                ) : null}
+                <View style={styles.skipCon}>
+                  {index !== 2 ? (
+                    <Button
+                      onPress={() => props.navigation.navigate("Home")}
+                      style={styles.skipButton}
+                      small
+                      transparent
+                    >
+                      <Text style= {{fontSize:hp('1.8%')}}>skip</Text>
+                    </Button>
+                  ) : null}
+                </View>
                 <Text style={styles.topText}>{post.upperText}</Text>
               </View>
               {/* image */}
               <View style={styles.imageStyle}>
                 <Image source={post.imageSrc} style={styles.backgroundImage} />
               </View>
+              <View style={styles.dotCon}></View>
               {/* bottom text */}
               <View style={styles.bottomTextContainer}>
                 <Text style={styles.bottomText}>{post.lowerText}</Text>
-                {index == 2 ? (
-                  <Button
-                    onPress={() => props.navigation.navigate("Home")}
-                    style={styles.conButton}
-                    bordered
-                    rounded
-                  >
-                    <Text>get started</Text>
-                  </Button>
-                ) : (
-                  <Button
-                    // onPress={() => setIndexNo(indexNo + 1)}
-                    style={styles.conButton}
-                    bordered
-                    rounded
-                  >
-                    <Text style = {{textAlign:'center'}}>continue</Text>
-                  </Button>
-                )}
+                <View style={styles.nextButtonCon}>
+                  {index == 2 ? (
+                    <Button
+                      onPress={() => props.navigation.navigate("Home")}
+                      style={styles.conButton}
+                      bordered
+                      rounded
+                    >
+                      <Text style={{ marginLeft: wp("4") }}>get started</Text>
+                    </Button>
+                  ) : (
+                    <Button
+                      // onPress={() => setIndexNo(indexNo + 1)}
+                      style={styles.conButton}
+                      bordered
+                      rounded
+                    >
+                      <Text style={{ marginLeft: wp("6") }}>continue</Text>
+                    </Button>
+                  )}
+                </View>
               </View>
             </View>
           ))}
@@ -113,7 +125,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgb(253,244,226)"
   },
-  wrapper: {},
+
+  wrapper: {
+    flex: 1
+  },
   slide1: {
     flex: 1,
     justifyContent: "center",
@@ -121,30 +136,24 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(253,244,226)"
   },
   imageStyle: {
-    top: -25,
-    width: "100%",
-    height: 270
+    flex: 3
   },
   skipButton: {
-    top: -20,
-    position: "absolute",
-    right: 0
+    alignSelf: "flex-end"
   },
   conButton: {
-    left: 150,
-    paddingLeft: 17,
-    width: 150,
-    position: "absolute",
-    bottom: -15,
-    textAlign:'center'
+    // justifyContent:'flex-start',
+    width: wp("40"),
+    marginLeft: wp("20"),
+    marginTop: wp("5")
   },
   nextButtonContainer: {
-    width: 150,
-    height: 50,
-    left: 40,
-    marginTop: 150,
+    // width: wp("35"),
+    // height: hp("8"),
+    // left: wp("18"),
+    // top: wp("-5"),
     backgroundColor: "red",
-    opacity: 0
+    opacity: 1
   },
   slide2: {
     flex: 1,
@@ -158,46 +167,61 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgb(253,244,226)"
   },
+  dotCon: {
+    flex: 0.8,
+    backgroundColor: "blue"
+  },
   dotStyle: {
-    top: -250
+    top: wp("-48")
   },
   activeDotStyle: {
     backgroundColor: "#2e3c91",
-    top: -250
+    top: wp("-48")
   },
   topTextContainer: {
-    position: "absolute",
-    height: 230,
-    top: 20,
-    width: "95%",
-    padding: 40,
-    marginTop: 50,
-    marginLeft: 30
+    flex: 3,
+    justifyContent: "center",
+    alignContent: "center"
+  },
+  skipCon: {
+    flex: 2,
+    // backgroundColor: "green",
+    justifyContent: "center"
   },
   bottomTextContainer: {
-    position: "absolute",
-    height: 230,
-    top: 520,
-    width: "95%",
-    padding: 40,
-    marginTop: 50,
-    marginLeft: 30
+    flex: 3,
+    justifyContent: "center",
+    alignContent: "center"
   },
   topText: {
+    flex: 3,
+    // backgroundColor: "yellow",
+    alignSelf:'center',
     color: "#2e3c91",
-    fontSize: 30,
-    fontWeight: "bold"
+    fontSize: hp("3%"),
+    fontWeight: "bold",
+    textAlign: "center",
+    width: wp("80")
   },
   bottomText: {
+    flex: 3,
+    // backgroundColor: "green",
     color: "#2e3c91",
-    fontSize: 20
+    fontSize: hp("2.5%"),
+    width: wp("80")
+
     // fontWeight: "bold"
   },
+  nextButtonCon: {
+    flex: 2,
+    // backgroundColor: "yellow"
+  },
   backgroundImage: {
-    width: "100%",
-    height: "100%",
+    flex: 3,
+    width: wp("100"),
     resizeMode: "stretch",
-    position: "absolute"
+    margin: 0,
+    padding: 0
   }
 });
 

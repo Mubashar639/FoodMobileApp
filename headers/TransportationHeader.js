@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { EvilIcons, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 const TransportationHeader = props => {
   const [isSearch, setIsSearch] = useState(false);
   //   bottle-wine
@@ -13,7 +16,7 @@ const TransportationHeader = props => {
           onPress={() => setIsSearch(!isSearch)}
           style={styles.iconStyle}
           name="bottle-wine"
-          size={48}
+          size={hp("6")}
           color="gray"
         />
       </View>
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: hp('3'),
     color: "#3b448b",
     marginLeft: 50
   },

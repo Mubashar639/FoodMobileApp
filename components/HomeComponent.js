@@ -8,6 +8,10 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 
 import { Card, CardItem } from "native-base";
 import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
@@ -59,11 +63,11 @@ const Home = props => {
               <AntDesign
                 style={{
                   position: "absolute",
-                  top: -20,
-                  left: 105
+                  top: hp('-2.8'),
+                  left: hp('14')
                 }}
                 name="caretup"
-                size={48}
+                size={hp('5')}
                 color="#feedd3"
               />
 
@@ -104,11 +108,11 @@ const Home = props => {
               <AntDesign
                 style={{
                   position: "absolute",
-                  top: -20,
-                  left: 105
+                  top: hp('-2.8'),
+                  left: hp('14')
                 }}
                 name="caretup"
-                size={48}
+                size={hp('5')}
                 color="#feedd3"
               />
 
@@ -143,11 +147,11 @@ const Home = props => {
               <AntDesign
                 style={{
                   position: "absolute",
-                  top: -20,
-                  left: 105
+                  top: hp('-2.8'),
+                  left: hp('14')
                 }}
                 name="caretup"
-                size={48}
+                size={hp('5')}
                 color="#feedd3"
               />
 
@@ -163,7 +167,7 @@ const Home = props => {
         </View>
         {/* my care */}
         <View style={styles.myCareIconCon}>
-          <TouchableOpacity onPress={() => isShowMethod('myCare')}>
+          <TouchableOpacity onPress={() => isShowMethod("myCare")}>
             <Image
               source={require("../assets/icons/carepackagesicon.png")}
               style={styles.myCareIcon}
@@ -175,11 +179,11 @@ const Home = props => {
               <AntDesign
                 style={{
                   position: "absolute",
-                  top: -20,
-                  left: 105
+                  top: hp('-2.8'),
+                  left: hp('14')
                 }}
                 name="caretup"
-                size={48}
+                size={hp('5')}
                 color="#feedd3"
               />
 
@@ -200,129 +204,127 @@ const Home = props => {
 
 const styles = StyleSheet.create({
   container: {
+    width: wp("100%"),
+    height: hp("100%"),
     flex: 1,
     justifyContent: "center",
     alignContent: "center"
   },
   backgroundImg: {
-    width: "100%",
-    height: "100%"
+    width: wp("100%"),
+    height: hp("100%")
   },
   homeIcon: {
-    width: 100,
-    height: 150,
+    width: wp('22'),
+    height: hp('18'),
     resizeMode: "stretch",
     position: "absolute",
-    top: 350,
-    left: 30
+    top: hp('40'),
+    left:hp('2')
   },
   accountIconCon: {
-    width: 200,
+    width: wp("50"),
     position: "absolute",
-    top: 125,
-    left: 100,
+    top: hp("11.5"),
+    left: wp("23"),
     display: "flex",
     flexDirection: "row",
     alignItems: "center"
   },
   myAccountIcon: {
-    width: 80,
-    height: 80,
+    width: wp("18"),
+    height: hp("11"),
     resizeMode: "stretch"
   },
   accountText: {
     color: "#263690",
-    fontSize: 21,
+    fontSize: hp("2.3%"),
     fontWeight: "bold",
-    marginLeft: 20
+    marginLeft: wp('4')
   },
 
   facilitiesIconCon: {
-    width: 200,
+    width: wp("50"),
     position: "absolute",
-    top: 300,
-    left: 230,
+    top: hp("32"),
+    left: wp("48"),
     display: "flex",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   facilitiesIcon: {
-    width: 80,
-    height: 80,
+    width: wp("18"),
+    height: hp("11"),
     resizeMode: "stretch"
   },
   facilitiesText: {
     color: "#263690",
-    fontSize: 21,
+    fontSize: hp("2.3%"),
     fontWeight: "bold",
-    marginLeft: 20
+    marginLeft: wp('4')
   },
   transportIconCon: {
-    width: 200,
+    width: wp("50"),
     position: "absolute",
-    top: 500,
-    left: 225,
+    top: hp('55'),
+    left: wp('48'),
     display: "flex",
     flexDirection: "row",
     alignItems: "center"
   },
   transportIcon: {
-    width: 80,
-    height: 80,
+    width: wp("18"),
+    height: hp("11"),
     resizeMode: "stretch"
   },
   transportText: {
     color: "#263690",
-    fontSize: 21,
+    fontSize: hp("2.3%"),
     fontWeight: "bold",
-    marginLeft: 20
+    marginLeft: wp('4')
   },
   myCareIconCon: {
-    width: 200,
+    width: wp("50"),
     position: "absolute",
-    top: 650,
-    left: 110,
+    top: hp('77.5'),
+    left: wp('24'),
     display: "flex",
     flexDirection: "row",
     alignItems: "center"
   },
   myCareIcon: {
-    width: 80,
-    height: 80,
+    width: wp("18"),
+    height: hp("11"),
     resizeMode: "stretch"
   },
   myCareText: {
     color: "#263690",
-    fontSize: 21,
+    fontSize: hp("2.3%"),
     fontWeight: "bold",
-    marginLeft: 20
+    marginLeft: wp('4')
   },
-  contentStyle: {
-    width: "100%",
-    height: "auto",
-    paddingLeft: 10
-  },
+
   contentText: {
     backgroundColor: "#4545a0",
-    marginTop: 10
+    marginTop: hp('1')
   },
   catCon: {
-    width: 250,
+    width: wp('55'),
     zIndex: 1000,
     height: "auto",
     borderRadius: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
+    paddingLeft: wp('1.5'),
+    paddingRight: wp('1.5'),
+    paddingBottom:wp('1.5'),
     position: "absolute",
-    top: 100,
-    left: -90,
+    top: hp('14'),
+    left: hp('-11'),
     backgroundColor: "#feedd3"
   },
   catText: {
-    fontSize: 16,
+    fontSize: hp('2%'),
     fontWeight: "bold",
-    padding: 7,
+    padding: wp("1.5"),
     color: "#acbddd"
   }
 });
