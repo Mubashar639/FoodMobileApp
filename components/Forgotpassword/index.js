@@ -8,8 +8,8 @@ import NewPassComponent from "./NewPassComponent";
 const Index = () => {
   return (
     <View style={styles.container}>
-      {/* <EmailComponent /> */}
-      <DigitComponent />
+      <EmailComponent />
+      {/* <DigitComponent /> */}
       {/* <NewPassComponent /> */}
     </View>
   );

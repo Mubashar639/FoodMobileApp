@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 //Import Components
 import MyCarePackages from "../components/MyCarePackagesComponent";
 import MyCarePackagesHeader from '../headers/MyCarePackagesHeader'
@@ -12,15 +15,16 @@ class MyCarePackagesScreen extends React.Component {
       title: "FACILITIES",
       headerStyle: {
         backgroundColor: "#fceccf",
-        height: 80
+        height: hp("8.5")
+
       },
       headerLeft: () => (
         <AntDesign
-          onPress={() => navigation.goBack()}
-          style={styles.leftButton}
-          name="left"
-          size={36}
-          color="gray"
+        onPress={() => navigation.goBack()}
+        style={styles.leftButton}
+        name="left"
+        size={hp("3")}
+        color="gray"
         />
       ),
 

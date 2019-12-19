@@ -68,14 +68,16 @@ const Introduction = props => {
               <View style={styles.topTextContainer}>
                 <View style={styles.skipCon}>
                   {index !== 2 ? (
-                    <Button
-                      onPress={() => props.navigation.navigate("Home")}
-                      style={styles.skipButton}
-                      small
-                      transparent
-                    >
-                      <Text style= {{fontSize:hp('1.8%')}}>skip</Text>
-                    </Button>
+                    <TouchableOpacity>
+                      <Button
+                        onPress={() => props.navigation.navigate("Auth")}
+                        style={styles.skipButton}
+                        small
+                        transparent
+                      >
+                        <Text style={{ fontSize: hp("1.8%") }}>skip</Text>
+                      </Button>
+                    </TouchableOpacity>
                   ) : null}
                 </View>
                 <Text style={styles.topText}>{post.upperText}</Text>
@@ -91,12 +93,12 @@ const Introduction = props => {
                 <View style={styles.nextButtonCon}>
                   {index == 2 ? (
                     <Button
-                      onPress={() => props.navigation.navigate("Home")}
+                      onPress={() => props.navigation.navigate("Auth")}
                       style={styles.conButton}
                       bordered
                       rounded
                     >
-                      <Text style={{ marginLeft: wp("4") }}>get started</Text>
+                      <Text>get started</Text>
                     </Button>
                   ) : (
                     <Button
@@ -105,7 +107,7 @@ const Introduction = props => {
                       bordered
                       rounded
                     >
-                      <Text style={{ marginLeft: wp("6") }}>continue</Text>
+                      <Text>continue</Text>
                     </Button>
                   )}
                 </View>
@@ -145,15 +147,17 @@ const styles = StyleSheet.create({
     // justifyContent:'flex-start',
     width: wp("40"),
     marginLeft: wp("20"),
-    marginTop: wp("5")
+    marginTop: wp("5"),
+    alignContent: "center",
+    justifyContent: "center"
   },
   nextButtonContainer: {
-    // width: wp("35"),
-    // height: hp("8"),
-    // left: wp("18"),
-    // top: wp("-5"),
+    width: wp("35"),
+    height: hp("8"),
+    left: wp("18"),
+    top: wp("3"),
     backgroundColor: "red",
-    opacity: 1
+    opacity: 0
   },
   slide2: {
     flex: 1,
@@ -172,11 +176,11 @@ const styles = StyleSheet.create({
     backgroundColor: "blue"
   },
   dotStyle: {
-    top: wp("-48")
+    top: wp("-53")
   },
   activeDotStyle: {
     backgroundColor: "#2e3c91",
-    top: wp("-48")
+    top: wp("-53")
   },
   topTextContainer: {
     flex: 3,
@@ -186,7 +190,8 @@ const styles = StyleSheet.create({
   skipCon: {
     flex: 2,
     // backgroundColor: "green",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "flex-end"
   },
   bottomTextContainer: {
     flex: 3,
@@ -196,7 +201,7 @@ const styles = StyleSheet.create({
   topText: {
     flex: 3,
     // backgroundColor: "yellow",
-    alignSelf:'center',
+    alignSelf: "center",
     color: "#2e3c91",
     fontSize: hp("3%"),
     fontWeight: "bold",
@@ -213,7 +218,7 @@ const styles = StyleSheet.create({
     // fontWeight: "bold"
   },
   nextButtonCon: {
-    flex: 2,
+    flex: 2
     // backgroundColor: "yellow"
   },
   backgroundImage: {

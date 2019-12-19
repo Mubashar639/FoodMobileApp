@@ -1,7 +1,10 @@
 import React, { PureComponent } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { Card, CardItem, Radio, Left } from "native-base";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 class Rules extends PureComponent {
   render() {
     return (
@@ -11,30 +14,30 @@ class Rules extends PureComponent {
             <View>
               <Text
                 style={{
-                  fontSize: 25,
+                  fontSize: hp('3'),
                   fontWeight: "bold",
-                  marginTop: 10,
+                  marginTop: hp('1'),
                   color: "#443f39"
                 }}
               >
                 BEFORE YOU VISIT{" "}
               </Text>
 
-              <Text style={{ fontSize: 15, color: "#8b8378" }}>
+              <Text style={{ fontSize: hp('2'), color: "#8b8378" }}>
                 Make sure you to know visiting rules
               </Text>
               <Text
                 style={{
-                  fontSize: 25,
+                  fontSize: hp('3'),
                   fontWeight: "bold",
-                  marginTop: 10,
+                  marginTop: hp('1'),
                   color: "#443f39"
                 }}
               >
                 WHO CAN VISIT?
               </Text>
 
-              <Text style={{ fontSize: 15, color: "#8b8378" }}>
+              <Text style={{ fontSize: hp('2'), color: "#8b8378" }}>
                 Make sure you to know visiting rules
               </Text>
             </View>
@@ -47,17 +50,17 @@ class Rules extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fbf4e4",
-    height: "100%"
+    height: hp("100%")
   },
   card: {
-    width: "93%",
-    height: 250,
-    marginTop: 20,
-    marginLeft: 18,
+    width: wp("93%"),
+    height: hp('25'),
+    marginTop: hp('2'),
+    marginLeft: hp('2'),
     backgroundColor: "#ffeed0"
   },
   cardItemStyle: {
-    width: "100%",
+    width: wp("100%"),
     backgroundColor: "#ffeed0"
   }
 });

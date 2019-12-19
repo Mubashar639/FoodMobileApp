@@ -3,13 +3,17 @@ import {
   View,
   StyleSheet,
   Image,
+  ImageBackground,
   TouchableHighlight,
   Alert,
   ScrollView
 } from "react-native";
-import { Accordion, Text } from "native-base";
+import { Accordion, Text, ListItem } from "native-base";
 import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 // assets
 
 class FacilitiesList extends React.Component {
@@ -20,83 +24,51 @@ class FacilitiesList extends React.Component {
       contents: [
         {
           title: "Title 1",
-          FacilitiesDetails: "Hi. I love this component. What do you think?",
-          address: "street 293 9 2 sarder faisalabad"
-        },
-        {
-          title: "See this one too",
-          FacilitiesDetails: "Yes. You can have more items.",
-          address: "street 29 sarder bazar lahore"
-        },
-        {
-          title: "Thrid thing",
-          FacilitiesDetails:
-            "What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text?",
-          address: "street  2 sarder isb"
+          TransportationDetails: [
+            {
+              facilities: "tansportataions",
+              dayOfOperation: ["mon", "tus", "wed"],
+              ticketPrice: 500,
+              pickUpLocation: "chak no 197 rn faisabadad",
+              phoneNo: 15645148545
+            }
+          ]
         },
         {
           title: "Title 1",
-          FacilitiesDetails: "Hi. I love this component. What do you think?",
-          address: "street 293 9 2 sarder faisalabad"
-        },
-        {
-          title: "See this one too",
-          FacilitiesDetails: "Yes. You can have more items.",
-          address: "street 29 sarder bazar lahore"
-        },
-        {
-          title: "Thrid thing",
-          FacilitiesDetails:
-            "What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text?",
-          address: "street  2 sarder isb"
+          TransportationDetails: [
+            {
+              facilities: "tansportataions",
+              dayOfOperation: ["mon", "tus", "wed"],
+              ticketPrice: 500,
+              pickUpLocation: "chak no 197 rn faisabadad",
+              phoneNo: 15645148545
+            }
+          ]
         },
         {
           title: "Title 1",
-          FacilitiesDetails: "Hi. I love this component. What do you think?",
-          address: "street 293 9 2 sarder faisalabad"
-        },
-        {
-          title: "See this one too",
-          FacilitiesDetails: "Yes. You can have more items.",
-          address: "street 29 sarder bazar lahore"
-        },
-        {
-          title: "Thrid thing",
-          FacilitiesDetails:
-            "What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text?",
-          address: "street  2 sarder isb"
+          TransportationDetails: [
+            {
+              facilities: "tansportataions",
+              dayOfOperation: ["mon", "tus", "wed"],
+              ticketPrice: 500,
+              pickUpLocation: "chak no 197 rn faisabadad",
+              phoneNo: 15645148545
+            }
+          ]
         },
         {
           title: "Title 1",
-          FacilitiesDetails: "Hi. I love this component. What do you think?",
-          address: "street 293 9 2 sarder faisalabad"
-        },
-        {
-          title: "See this one too",
-          FacilitiesDetails: "Yes. You can have more items.",
-          address: "street 29 sarder bazar lahore"
-        },
-        {
-          title: "Thrid thing",
-          FacilitiesDetails:
-            "What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text?",
-          address: "street  2 sarder isb"
-        },
-        {
-          title: "Title 1",
-          FacilitiesDetails: "Hi. I love this component. What do you think?",
-          address: "street 293 9 2 sarder faisalabad"
-        },
-        {
-          title: "See this one too",
-          FacilitiesDetails: "Yes. You can have more items.",
-          address: "street 29 sarder bazar lahore"
-        },
-        {
-          title: "Thrid thing",
-          FacilitiesDetails:
-            "What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text? What about very long text?",
-          address: "street  2 sarder isb"
+          TransportationDetails: [
+            {
+              facilities: "tansportataions",
+              dayOfOperation: ["mon", "tus", "wed"],
+              ticketPrice: 500,
+              pickUpLocation: "chak no 197 rn faisabadad",
+              phoneNo: 15645148545
+            }
+          ]
         }
       ]
     };
@@ -106,41 +78,70 @@ class FacilitiesList extends React.Component {
     return (
       <View style={styles.headerStyle}>
         <Text style={styles.headerTitle}>{items.title}</Text>
-        <Image
-          style={styles.arrows}
-          source={
-            expanded
-              ? require("../assets/icons/uparrow.png")
-              : require("../assets/icons/downarrow.png")
-          }
-        />
+        <View style={styles.arrows}>
+          {expanded ? (
+            <AntDesign name="caretup" color={"#27368e"} size={hp("2.5")} />
+          ) : (
+            <AntDesign name="caretdown" color={"#27368e"} size={hp("2.5")} />
+          )}
+        </View>
       </View>
     );
   };
-  _renderContent = (items) => {
+  _renderContent = items => {
     return (
       <View style={styles.contentStyle}>
-        <Text style={styles.contentText}>Facilities:  {items.FacilitiesDetails}</Text>
-        <Text style={styles.contentText}>address:  {items.address}</Text>
+        {items.TransportationDetails.map((item, i) => (
+          <View key={i}>
+            <ListItem>
+              <Text style={styles.textStyle}>
+                Facilities: {item.facilities}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text style={styles.textStyle}>
+                DayOfOperation: MON, TUE ,WED{" "}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text style={styles.textStyle}>
+                TicketPrice: {item.ticketPrice}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text style={styles.textStyle}>
+                PickUpLocation: {item.pickUpLocation}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text style={styles.textStyle}>PhoneNo: {item.phoneNo}</Text>
+            </ListItem>
+          </View>
+        ))}
       </View>
     );
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView>
-          {this.state.contents ? (
-            <Accordion
-              dataArray={this.state.contents}
-              // expanded={0}
-              renderHeader={this._renderHeader}
-              renderContent = {this._renderContent}
-            />
-          ) : null}
-          <View style={{ height: 96 }} />
-        </ScrollView>
-      </View>
+      <ImageBackground
+        style={styles.backImg}
+        source={require("../assets/images/backImg.png")}
+      >
+        <View style={styles.container}>
+          <ScrollView style={styles.scroll}>
+            {this.state.contents ? (
+              <Accordion
+                dataArray={this.state.contents}
+                // expanded={0}
+                renderHeader={this._renderHeader}
+                renderContent={this._renderContent}
+              />
+            ) : null}
+            <View style={{ height: 96 }} />
+          </ScrollView>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -150,51 +151,61 @@ class FacilitiesList extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fcf2e5"
+    justifyContent: "center",
+    alignContent: "center",
   },
+
   dropDownItem: {
-    marginTop: 20,
-    paddingRight: 10,
-    paddingTop: -20
+    marginTop: wp("3"),
+    paddingRight: wp("1"),
+    paddingTop: wp("-3")
   },
   headerStyle: {
-    width: "100%",
-    height: 60,
+    width: wp("96"),
+    height: hp("7.5"),
+    alignSelf: "center",
     // paddingTop:20,
     backgroundColor: "#fceccf",
-    borderColor: "#f0e2ce",
+    borderColor: "#e9e0ce",
     borderWidth: 1,
     borderStyle: "solid",
-    paddingLeft: 10,
-    marginTop: 15,
+    paddingLeft: wp("1"),
+    marginTop: wp("4")
   },
   headerTitle: {
-    fontSize: 26,
+    fontSize: hp("3"),
     color: "#3b448b",
-    padding: 8
+    padding: wp("2.5")
   },
   contentStyle: {
     width: "100%",
     height: "auto",
-    paddingLeft: 10,
-   
+    paddingLeft: hp("1"),
+    backgroundColor:'#fbf4e4'
 
   },
   contentText: {
-    fontSize: 16,
-    color: "#3b448b",
+    fontSize: hp("2"),
     borderBottomColor: "#f0e2ce",
     borderBottomWidth: 1,
     textAlignVertical: "center",
-    marginTop: 15,
-    paddingBottom: 15,
-    paddingLeft: 10
-
+    marginTop: hp("2"),
+    paddingBottom: hp("2"),
+    paddingLeft: hp("1")
+  },
+  textStyle: {
+    color: "#27368e"
   },
   arrows: {
     position: "absolute",
-    top: 20,
-    right: 20
+    top: hp("2.3"),
+    right: hp("3.2")
+  },
+  backImg: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+ 
   }
 });
 

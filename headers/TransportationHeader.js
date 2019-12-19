@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { EvilIcons, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import {
@@ -6,17 +6,15 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 const TransportationHeader = props => {
-  const [isSearch, setIsSearch] = useState(false);
   //   bottle-wine
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.headerTitle}>TRANSPORTATION</Text>
         <MaterialCommunityIcons
-          onPress={() => setIsSearch(!isSearch)}
           style={styles.iconStyle}
           name="bottle-wine"
-          size={hp("6")}
+          size={hp('5')}
           color="gray"
         />
       </View>
@@ -31,26 +29,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: hp('3'),
     color: "#3b448b",
-    marginLeft: 50
+    marginLeft: wp('-13'),
+    textAlign:'center'
   },
   iconStyle: {
     position: "absolute",
-    right: 20,
-    top:-5
+    right: wp('4'),
+    top:hp('-0.5')
   },
-  iconCrossStyle: {
-    position: "absolute",
-    top: 73,
-    right: 22
-  },
-
-  inputStyle: {
-    fontSize: 27,
-    height: 200,
-    marginLeft: 10,
-    // position: "absolute",
-    top: 0
-  }
 });
 
 export default TransportationHeader;

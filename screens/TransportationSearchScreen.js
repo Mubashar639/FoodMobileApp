@@ -13,21 +13,21 @@ import TransportationHeader from '../headers/TransportationHeader'
 class TransportationSearchScreen extends PureComponent {
     static navigationOptions = ({ navigation }) => {
         return {
-          title: "TRANSPORTAION",
+          // title: "TRANSPORTAION",
           headerStyle: {
             backgroundColor: "#fceccf",
-            height:hp("10")
+            height: hp("8.5")
           },
           headerTitleStyle: {
             fontSize:hp('1')
           },
           headerLeft: () => (
             <AntDesign
-              onPress={() => navigation.goBack()}
-              style={styles.leftButton}
-              name="left"
-              size={hp('6')}
-              color="gray"
+            onPress={() => navigation.goBack()}
+            style={styles.leftButton}
+            name="left"
+            size={hp("3")}
+            color="gray"
             />
           ),
     
@@ -44,7 +44,7 @@ class TransportationSearchScreen extends PureComponent {
 }
 const styles = StyleSheet.create({
     leftButton: {
-      marginLeft: 20
+      marginLeft: hp('2.5')
     },
     
   });

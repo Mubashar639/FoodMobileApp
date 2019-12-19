@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { EvilIcons, Entypo } from "@expo/vector-icons";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 const FacilitiesHeader = props => {
     const [isSearch, setIsSearch] = useState(false);
   
@@ -21,7 +24,7 @@ const FacilitiesHeader = props => {
               onPress={() => setIsSearch(!isSearch)}
               style={styles.iconCrossStyle}
               name="cross"
-              size={48}
+              size={hp('4')}
               color="gray"
             />
           </View>
@@ -32,7 +35,7 @@ const FacilitiesHeader = props => {
               onPress={() => setIsSearch(!isSearch)}
               style={styles.iconStyle}
               name="search"
-              size={48}
+              size={hp('4')}
               color="gray"
             />
           </View>
@@ -46,25 +49,27 @@ const FacilitiesHeader = props => {
     },
     headerTitle: {
       fontWeight: "bold",
-      fontSize: 30,
+      fontSize: hp('3'),
       color: "#3b448b",
-      marginLeft: 105
+      marginLeft: wp('-13'),
+      textAlign:'center'
     },
     iconStyle: {
       position: "absolute",
-      right: 20
+      right: wp('4'),
+      top:hp('0.3')
     },
     iconCrossStyle: {
       position: "absolute",
-      top:73,
-      right:22
+      top:hp('3'),
+      right:wp('3.5')
     
     },
    
     inputStyle: {
-      fontSize:27,
-      height: 200,
-      marginLeft:10,
+      fontSize:hp('2.5'),
+      height: hp('10'),
+      marginLeft:hp('1'),
       // position: "absolute",
       top:0
     }

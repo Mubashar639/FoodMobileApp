@@ -6,7 +6,10 @@ import {
   Entypo,
   MaterialCommunityIcons
 } from "@expo/vector-icons";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 //Import Components
 import Rules from "../components/RulesComponent";
 
@@ -16,30 +19,31 @@ class RulesScreen extends React.Component {
       title: "RULES & REGULATIONS",
       headerStyle: {
         backgroundColor: "#fceccf",
-        height: 80
+        height: hp("8.5")
+
       },
       headerTitleStyle: {
         fontWeight: "bold",
-        fontSize: 25,
+        fontSize: hp('3'),
         color: "#3b448b",
         textAlign: "center",
-        marginLeft: 50
+        marginLeft: hp('6')
       },
       headerRight: () => (
         <MaterialCommunityIcons
-          style={styles.iconStyle}
-          name="bottle-wine"
-          size={48}
-          color="gray"
+        style={styles.iconStyle}
+        name="bottle-wine"
+        size={hp('5')}
+        color="gray"
         />
       ),
       headerLeft: () => (
         <AntDesign
-          onPress={() => navigation.goBack()}
-          style={styles.leftButton}
-          name="left"
-          size={30}
-          color="gray"
+        onPress={() => navigation.goBack()}
+        style={styles.leftButton}
+        name="left"
+        size={hp("3")}
+        color="gray"
         />
       )
     };
@@ -50,10 +54,12 @@ class RulesScreen extends React.Component {
 }
 const styles = StyleSheet.create({
   leftButton: {
-    marginLeft: 20
+    marginLeft:hp('2.5')
+
   },
   iconStyle:{
-      right:20
+    position: "absolute",
+    right: wp('4'),
   }
 });
 export default RulesScreen;

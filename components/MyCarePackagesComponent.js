@@ -5,11 +5,15 @@ import {
   Image,
   TouchableHighlight,
   Alert,
-  ScrollView
+  ScrollView,
+  ImageBackground
 } from "react-native";
 import { Accordion, Text, ListItem, Radio, Body, Icon } from "native-base";
 import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 // assets
 
 class MyCarePackages extends React.Component {
@@ -50,14 +54,13 @@ class MyCarePackages extends React.Component {
       <View style={styles.headerStyle}>
         <Entypo style={styles.headerIcon} name="drink" size={30} color="gray" />
         <Text style={styles.headerTitle}>{items.title}</Text>
-        <Image
-          style={styles.arrows}
-          source={
-            expanded
-              ? require("../assets/icons/uparrow.png")
-              : require("../assets/icons/downarrow.png")
-          }
-        />
+        <View style={styles.arrows}>
+          {expanded ? (
+            <AntDesign name="caretup" color={"#27368e"} size={hp("2.5")} />
+          ) : (
+            <AntDesign name="caretdown" color={"#27368e"} size={hp("2.5")} />
+          )}
+        </View>
       </View>
     );
   };
@@ -66,7 +69,7 @@ class MyCarePackages extends React.Component {
       <View>
         {items.subContents.map((subItem, i) => (
           <ListItem style={styles.contentStyle} disabled key={i}>
-            <Radio color="#fff" selected={true} selectedColor="#ffeed0" />
+            <Radio  color="#fff" selected={true} selectedColor="#ffeed0" />
             <Body key={i}>
               <Text style={styles.contentText}>{subItem}</Text>
             </Body>
@@ -78,6 +81,10 @@ class MyCarePackages extends React.Component {
 
   render() {
     return (
+      <ImageBackground
+      style={styles.backImg}
+      source={require("../assets/images/backImg.png")}
+    >
       <View style={styles.container}>
         <ScrollView>
           {this.state.contents ? (
@@ -91,6 +98,7 @@ class MyCarePackages extends React.Component {
           <View style={{ height: 96 }} />
         </ScrollView>
       </View>
+      </ImageBackground>
     );
   }
 }
@@ -100,44 +108,55 @@ class MyCarePackages extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fcf2e5"
+    justifyContent: "center",
+    alignContent: "center",
   },
   dropDownItem: {
-    marginTop: 20,
-    paddingRight: 10,
-    paddingTop: -20
+    marginTop: wp("3"),
+    paddingRight: wp("1"),
+    paddingTop: wp("-3")
   },
   headerStyle: {
-    width: "100%",
-    height: 60,
+    width: wp("96"),
+    height: hp("7.5"),
+    alignSelf: "center",
     // paddingTop:20,
     backgroundColor: "#fceccf",
-    borderColor: "#f0e2ce",
+    borderColor: "#e9e0ce",
     borderWidth: 1,
     borderStyle: "solid",
-    paddingLeft: 40,
-    marginTop: 15
+    paddingLeft: wp("1"),
+    marginTop: wp("4")
   },
   headerTitle: {
-    fontSize: 26,
+    fontSize: hp("3"),
     color: "#3b448b",
-    padding: 8
+    padding: wp("2.5"),
+    paddingLeft:wp('10')
   },
-  headerIcon: { position: "absolute", left: 15, top: 12 },
+  headerIcon: { position: "absolute", left: hp('2'), top: hp('2') },
   contentStyle: {
+    height:hp('7'),
     backgroundColor: "#27378f",
-    marginTop: 10,
-    marginRight: 15,
-    paddingLeft: 10
+    marginTop: hp('0.5'),
+    marginRight: hp('2.3'),
+    paddingLeft: hp('1')
   },
   contentText: {
-    fontSize: 26,
+    fontSize: hp('2.5'),
+    fontWeight:'bold',
     color: "#fff"
   },
   arrows: {
     position: "absolute",
-    top: 15,
-    right: 20
+    top: hp("2.3"),
+    right: hp("3.2")
+  },
+  backImg: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+ 
   }
 });
 

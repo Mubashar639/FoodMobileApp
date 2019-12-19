@@ -6,40 +6,41 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 //Import Components
-import FacilitiesList from "../components/FacilitiesListComponent";
-import FacilitiesHeader from "../headers/FacilitiesListHeader";
+import MyCart from "../components/MyCartComponent";
+import MyCartHeader from '../headers/MyCartHeader'
 
-class FacilitiesListScreen extends React.Component {
+class MyCartScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    
     return {
       title: "FACILITIES",
       headerStyle: {
         backgroundColor: "#fceccf",
         height: hp("8.5")
+
       },
       headerLeft: () => (
         <AntDesign
-          onPress={() => navigation.goBack()}
-          style={styles.leftButton}
-          name="left"
-          size={hp("3")}
-          color="gray"
+        onPress={() => navigation.goBack()}
+        style={styles.leftButton}
+        name="left"
+        size={hp("3")}
+        color="gray"
         />
       ),
 
-      headerTitle: () => <FacilitiesHeader />
+      headerTitle: () => <MyCartHeader />,
     };
   };
   render() {
-    return <FacilitiesList navigation={this.props.navigation} />;
+    return <MyCart navigation={this.props.navigation} />;
   }
 }
 
 const styles = StyleSheet.create({
   leftButton: {
-    marginLeft:hp('2.5')
-  }
+    marginLeft: 20
+  },
+  
 });
 
-export default FacilitiesListScreen;
+export default MyCartScreen;

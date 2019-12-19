@@ -1,4 +1,7 @@
 import { createStackNavigator } from "react-navigation-stack";
+// import { createMaterialTopTabNavigator } from "react-navigation-tabs";
+// import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
 
 //Import Screens
 import IntroScreen from "../screens/IntroScreen";
@@ -11,32 +14,50 @@ import PaymentsScreen from "../screens/PaymentsScreen";
 import RulesScreen from "../screens/RulesScreen";
 import ProductsScreen from "../screens/ProductsScreen";
 import AuthScreen from "../screens/AuthScreen";
+
 import HomeScreen from "../screens/HomeScreen";
+import MyCartScreen from "../screens/MyCartScreen";
+import MyTripsScreen from "../screens/MyTripsScreen";
 import Demo from "../screens/Demo";
+//Tabs Components
+import Signup from "../components/Auth/SignupComponent";
+import Signin from "../components/Auth/SigninComponent";
 
 const AppStackNavigator = createStackNavigator(
   {
     Intro: {
-      screen: TransportationSearchScreen
+      screen: IntroScreen
       // screen: Demo
     },
-    // Home: {
-    //   screen: HomeScreen
-    // },
-    // FacilitiesSearch: {
-    //   screen: TransportationSearchScreen
-    // },
-    // Transport: {
-    //   screen: TransportationScreen
-    // },
-    // Rules: {
-    //   screen: RulesScreen
-    // },
-    // Products: {
-    //   screen: ProductsScreen
-    // },
-    // FacilitiesList: {
-      // screen: FacilitiesListScreen
+    Home: {
+      screen: HomeScreen
+    },
+    ForgotPassword: {
+      screen: ForgotPasswordScreen
+    },
+    Auth: {
+      screen: AuthScreen
+    },
+    MyCart: {
+      screen: MyCartScreen
+    },
+    MyTrips: {
+      screen: MyTripsScreen
+    },
+    FacilitiesSearch: {
+      screen: TransportationSearchScreen
+    },
+    Transport: {
+      screen: TransportationScreen
+    },
+    Rules: {
+      screen: RulesScreen
+    },
+    Products: {
+      screen: ProductsScreen
+    },
+    FacilitiesList: {
+      screen: FacilitiesListScreen
       // screen: MyCarePackagesScreen,
       // screen: TransportationScreen,
       // screen: TransportationSearchScreen,
@@ -46,17 +67,19 @@ const AppStackNavigator = createStackNavigator(
       // screen: ProductsScreen,
       // screen: AuthScreen,
       // screen: HomeScreen
-    // },
-    // Payments: {
-    //   screen: PaymentsScreen
-    // },
-    // Orders: {
-    //   screen: MyCarePackagesScreen
-    // }
+    },
+    Payments: {
+      screen: PaymentsScreen
+    },
+    Orders: {
+      screen: MyCarePackagesScreen
+    }
   },
   {
     initialRouteName: "Intro"
   }
 );
 
-export default AppStackNavigator;
+//Tabs Navigation
+
+export default createAppContainer(AppStackNavigator);

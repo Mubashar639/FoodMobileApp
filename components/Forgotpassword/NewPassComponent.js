@@ -1,7 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Card, CardItem, Button, Form, Item, Input } from "native-base";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 const NewPassComponent = () => {
   return (
     <View style={styles.container}>
@@ -21,7 +24,7 @@ const NewPassComponent = () => {
         </Item>
 
         <View style={styles.buttonStyle}>
-          <Button large>
+          <Button style = {{justifyContent:'center'}} large>
             <Text style={styles.buttonTextStyle}>Next</Text>
           </Button>
         </View>
@@ -31,34 +34,38 @@ const NewPassComponent = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#fbf4e4"
+    flex: 1,
+    backgroundColor: "#fbf4e4",
+    justifyContent: "center",
+    alignContent: "center",
   },
   formStyle: {
     width: "100%",
-    marginTop: 370
+    marginTop: hp("42"),
+    alignContent: "center",
+    justifyContent: "center"
   },
   titleStyle: {
-    marginLeft: 15,
-    fontSize: 17,
-    color: "#3f51b5",
+    marginLeft: hp("3"),
+    marginRight: hp("1"),
+    fontSize: hp("2.8"),
+    color: "#3f51b5"
   },
   itemStyle: {
-    width: "93%",
-    marginBottom: 15,
-    paddingLeft: 10,
-    marginLeft: 15
+    width: "90%",
+    marginBottom: hp("3"),
+    // paddingLeft: hp("1"),
+    marginLeft: hp("3")
   },
   buttonStyle: {
-    width: "93%",
-    marginLeft: 15
+    width: "90%",
+    marginLeft: hp("3")
   },
   buttonTextStyle: {
-    fontSize: 23,
-    color: "#fff",
-    marginLeft: "45%"
+    fontSize: hp("3"),
+    color: "#fff"
+    // marginLeft: hp("25")
   },
-  imageStyle: { alignSelf: "center", top: 80, position: "absolute" }
+  imageStyle: { alignSelf: "center", top: hp("6"), position: "absolute" }
 });
 export default NewPassComponent;

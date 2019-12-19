@@ -5,13 +5,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-const ProductsHeader = props => {
+const MyCartHeader = props => {
+  const [isSearch, setIsSearch] = useState(false);
   //   bottle-wine
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.headerTitle}>PRODUCTS</Text>
+        <Text style={styles.headerTitle}>MY CART</Text>
         <MaterialCommunityIcons
+          onPress={() => setIsSearch(!isSearch)}
           style={styles.iconStyle}
           name="bottle-wine"
           size={hp('5')}
@@ -23,21 +25,21 @@ const ProductsHeader = props => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: wp("100%")
+    width: "100%"
   },
   headerTitle: {
     fontWeight: "bold",
-      fontSize: hp('3'),
-      color: "#3b448b",
-      marginLeft: wp('22'),
-   
+    fontSize: hp('3'),
+    color: "#3b448b",
+    marginLeft: wp('-13'),
+    textAlign:'center'
   },
   iconStyle: {
     position: "absolute",
-    right: wp('4'),
-    top:hp('-0.5')
+      right: wp('4'),
+      top:hp('-0.5')
   },
 
 });
 
-export default ProductsHeader;
+export default MyCartHeader;

@@ -4,7 +4,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { Ionicons } from "@expo/vector-icons";
 //Import Navigation Container
-import AppContainer from "./navigation/appNavigation";
+import AppContainer from "./navigation/stackNavigation";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -45,7 +45,8 @@ class App extends React.Component {
     if (!this.state.isReady) {
       return <AppLoading />;
     }
-    return <AppContainer />;
+    return<AppContainer />;
+    
   }
 }
 

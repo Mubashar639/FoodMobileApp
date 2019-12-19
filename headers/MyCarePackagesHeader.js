@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { EvilIcons, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 const MyCarePackagesHeader = props => {
   const [isSearch, setIsSearch] = useState(false);
   //   bottle-wine
@@ -13,7 +16,7 @@ const MyCarePackagesHeader = props => {
           onPress={() => setIsSearch(!isSearch)}
           style={styles.iconStyle}
           name="bottle-wine"
-          size={48}
+          size={hp('5')}
           color="gray"
         />
       </View>
@@ -26,28 +29,17 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: hp('3'),
     color: "#3b448b",
-    marginLeft: 25
+    marginLeft: wp('-13'),
+    textAlign:'center'
   },
   iconStyle: {
     position: "absolute",
-    right: 20,
-    top:-5
-  },
-  iconCrossStyle: {
-    position: "absolute",
-    top: 73,
-    right: 22
+      right: wp('4'),
+      top:hp('-0.5')
   },
 
-  inputStyle: {
-    fontSize: 27,
-    height: 200,
-    marginLeft: 10,
-    // position: "absolute",
-    top: 0
-  }
 });
 
 export default MyCarePackagesHeader;

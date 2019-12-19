@@ -1,7 +1,10 @@
 import React, { PureComponent } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Card, CardItem, Button, Form, Item, Input } from "native-base";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 class TransportationsSearch extends PureComponent {
   render() {
     return (
@@ -18,7 +21,7 @@ class TransportationsSearch extends PureComponent {
               </Item>
 
               <View style={styles.buttonStyle}>
-                <Button style = {{borderRadius:40}}>
+                <Button style={{ borderRadius: 40, justifyContent: "center" }}>
                   <Text style={styles.buttonTextStyle}>Search</Text>
                 </Button>
               </View>
@@ -31,47 +34,53 @@ class TransportationsSearch extends PureComponent {
 }
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#fbf4e4"
+    flex: 1,
+    backgroundColor: "#fbf4e4",
+    // justifyContent:'center',
+    alignContent: "center"
   },
   card: {
-    width: "96%",
-    height: 400,
-    marginLeft: 10,
-    marginTop: 40,
-    backgroundColor: "#ffeed0"
+    width: wp("96%"),
+    height: hp("45%"),
+    // marginLeft: wp('2'),
+    marginTop: wp("10"),
+    backgroundColor: "#ffeed0",
+    alignSelf: "center"
+    // justifyContent:'center',
   },
   cardItemStyle: {
-    width: "95%",
+    width: wp("95%"),
+    alignContent: "center",
+
     backgroundColor: "#ffeed0"
   },
   formStyle: {
-    marginLeft: 20,
+    // marginLeft: wp('2.5'),
+    alignContent: "center",
+
     width: "97%",
     backgroundColor: "#ffeed0"
   },
   titleStyle: {
     alignSelf: "center",
-    fontSize: 23,
+    fontSize: hp("3"),
     color: "#3f51b5",
-    marginTop: 20,
-    marginBottom: 45
+    marginTop: hp("3"),
+    marginBottom: hp("5")
   },
   itemStyle: {
     backgroundColor: "#fff",
-    marginBottom: 25,
-    paddingLeft: 10
+    marginBottom: hp("4"),
+    paddingLeft: hp("2")
   },
   buttonStyle: {
-    width: "60%",
-    alignSelf: "center",
-    
+    width: wp("50"),
+    alignSelf: "center"
   },
   buttonTextStyle: {
-    fontSize: 23,
-    color: "#fff",
-    marginLeft: 80
+    fontSize: hp("3"),
+    color: "#fff"
+    // marginLeft: wp("17")
   }
 });
 export default TransportationsSearch;
