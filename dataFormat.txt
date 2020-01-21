@@ -1,0 +1,31 @@
+state Object {
+  "Category": Object {
+    "category": Array [],
+  },
+  "Facility": Object {
+    "errMess": null,
+    "facilities": Array [],
+    "isLoading": true,
+    "user": null,
+  },
+  "Foods": Object {
+    "errMess": null,
+    "isLoading": true,
+    "user": null,
+  },
+  "Login": Object {
+    "errMess": null,
+    "isLoading": false,
+    "user": null,
+  },
+  "Order": Object {
+    "errMess": null,
+    "isLoading": false,
+    "user": null,
+  },
+  "Transport": Object {
+    "errMess": null,
+    "isLoading": false,
+    "user": null,
+  },
+}

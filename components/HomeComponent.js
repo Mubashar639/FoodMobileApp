@@ -6,21 +6,82 @@ import {
   ImageBackground,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-
-import { Card, CardItem } from "native-base";
+import { Accordion, ListItem, Radio } from "native-base";
 import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
-
+let content = [
+  {
+    title: "MY TRIPS",
+    accountMenu: [
+      {
+        name: "My Trips",
+        navigateRout: "MyTrips"
+      }
+    ]
+  },
+  {
+    title: "PAYMENTS",
+    accountMenu: [
+      {
+        name: "Payments",
+        navigateRout: "Payments"
+      }
+    ]
+  },
+  {
+    title: "MY CARE PACKAGES",
+    accountMenu: [
+      {
+        name: "My Orders",
+        navigateRout: "Orders"
+      }
+    ]
+  }
+];
+let _renderHeader = (items, expanded) => {
+  return (
+    <View style={styles.headerStyle}>
+      <Text style={styles.headerTitle}>{items.title}</Text>
+      <View style={styles.arrows}>
+        {expanded ? (
+          <AntDesign name="caretup" color={"#27368e"} size={hp("1.5")} />
+        ) : (
+          <AntDesign name="caretdown" color={"#27368e"} size={hp("1.5")} />
+        )}
+      </View>
+    </View>
+  );
+};
+let _renderContent = items => {
+  return (
+    <View style={styles.contentStyle}>
+      {items.accountMenu.map((item, i) => (
+        <View key={i}>
+          <TouchableOpacity onPress={() => navigatorMethod(item.navigateRout)}>
+            <View style={styles.contentText}>
+              <View style={styles.radio}></View>
+              <View>
+                <Text style={styles.catText}>{item.name}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+      ))}
+    </View>
+  );
+};
 const Home = props => {
   const [isAccount, setIsAccount] = useState(false);
   const [isFacilities, setIsFacilities] = useState(false);
   const [isTransport, setIsTransport] = useState(false);
   const [isCare, setIsCare] = useState(false);
+  const [contents] = useState(content);
   isShowMethod = type => {
     if (type == "account") {
       setIsAccount(!isAccount);
@@ -48,7 +109,7 @@ const Home = props => {
           style={styles.homeIcon}
         />
 
-        <View style={{ flex: 1, backgroundColor: "pink", opacity: 0.3 }}></View>
+        <View style={{ flex: 1 }}></View>
         {/* Account */}
 
         <View style={styles.accountIconCon}>
@@ -64,44 +125,31 @@ const Home = props => {
             {isAccount ? (
               <View style={styles.catCon}>
                 <AntDesign
-                  style={{
-                    position: "absolute",
-                    top: hp("-2"),
-                    left: hp("8")
-                  }}
+                  style={styles.contentArrow}
                   name="caretup"
                   size={hp("4")}
                   color="#feedd3"
                 />
 
-                <View>
-                  <TouchableOpacity onPress={() => navigatorMethod("MyTrips")}>
-                    <View style={styles.contentText}>
-                      <Text style={styles.catText}>MY TRIPS</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => navigatorMethod("Payments")}>
-                    <View style={styles.contentText}>
-                      <Text style={styles.catText}>PAYMENTS</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => navigatorMethod("MyTrips")}>
-                    <View style={styles.contentText}>
-                      <Text style={styles.catText}>MY ORDERS</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => navigatorMethod("ForgotPassword")}
-                  >
-                    <View style={styles.contentText}>
-                      <Text style={styles.catText}>Forgot Password</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
+                <ScrollView style={styles.scroll}>
+                  {contents.length ? (
+                    <Accordion
+                      dataArray={contents}
+                      expanded={0}
+                      expandMultiple
+                      renderHeader={_renderHeader}
+                      renderContent={_renderContent}
+                    />
+                  ) : null}
+                  {/* <View style={{ height: 96 }} /> */}
+                </ScrollView>
               </View>
             ) : null}
           </View>
         </View>
+
+        {/* End Account */}
+
         {/* facilities */}
 
         <View style={styles.facilitiesIconCon}>
@@ -112,16 +160,12 @@ const Home = props => {
                 style={styles.facilitiesIcon}
               />
             </TouchableOpacity>
-            <Text style={styles.facilitiesText}>FACILITIES</Text>
+            <Text style={styles.facilitiesText}>Facilities</Text>
 
             {isFacilities ? (
               <View style={styles.catCon}>
                 <AntDesign
-                  style={{
-                    position: "absolute",
-                    top: hp("-2"),
-                    left: hp("8")
-                  }}
+                  style={styles.contentArrow}
                   name="caretup"
                   size={hp("4")}
                   color="#feedd3"
@@ -132,22 +176,18 @@ const Home = props => {
                     onPress={() => navigatorMethod("FacilitiesList")}
                   >
                     <View style={styles.contentText}>
-                      <Text style={styles.catText}>Facility Search</Text>
+                      <View style={styles.radio}></View>
+                      <View>
+                        <Text style={styles.catText}>Facility Search</Text>
+                      </View>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => navigatorMethod("Rules")}>
                     <View style={styles.contentText}>
-                      <Text style={styles.catText}>Rule & Regulations</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => navigatorMethod("Products")}>
-                    <View style={styles.contentText}>
-                      <Text style={styles.catText}>Products</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => navigatorMethod("MyCart")}>
-                    <View style={styles.contentText}>
-                      <Text style={styles.catText}>View Cart</Text>
+                      <View style={styles.radio}></View>
+                      <View>
+                        <Text style={styles.catText}>Rule & Regulations</Text>
+                      </View>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -164,16 +204,12 @@ const Home = props => {
                 style={styles.transportIcon}
               />
             </TouchableOpacity>
-            <Text style={styles.transportText}>TRANSPORT</Text>
+            <Text style={styles.transportText}>Transport</Text>
 
             {isTransport ? (
               <View style={styles.catCon}>
                 <AntDesign
-                  style={{
-                    position: "absolute",
-                    top: hp("-2"),
-                    left: hp("8")
-                  }}
+                  style={styles.contentArrow}
                   name="caretup"
                   size={hp("4")}
                   color="#feedd3"
@@ -184,7 +220,10 @@ const Home = props => {
                     onPress={() => navigatorMethod("FacilitiesSearch")}
                   >
                     <View style={styles.contentText}>
-                      <Text style={styles.catText}>Facility Lookup</Text>
+                      <View style={styles.radio}></View>
+                      <View>
+                        <Text style={styles.catText}>Facility Lookup</Text>
+                      </View>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -201,16 +240,12 @@ const Home = props => {
                 style={styles.myCareIcon}
               />
             </TouchableOpacity>
-            <Text style={styles.myCareText}>CARE PACKAGES</Text>
+            <Text style={styles.myCareText}>Care Packages</Text>
 
             {isCare ? (
               <View style={styles.catCon}>
                 <AntDesign
-                  style={{
-                    position: "absolute",
-                    top: hp("-2"),
-                    left: hp("8")
-                  }}
+                  style={styles.contentArrow}
                   name="caretup"
                   size={hp("4")}
                   color="#feedd3"
@@ -219,7 +254,10 @@ const Home = props => {
                 <View>
                   <TouchableOpacity onPress={() => navigatorMethod("Orders")}>
                     <View style={styles.contentText}>
-                      <Text style={styles.catText}>My Care Packages</Text>
+                      <View style={styles.radio}></View>
+                      <View>
+                        <Text style={styles.catText}>My Care Packages</Text>
+                      </View>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -227,7 +265,7 @@ const Home = props => {
             ) : null}
           </View>
         </View>
-        <View style={{ flex: 1, backgroundColor: "pink", opacity: 0.3 }}></View>
+        <View style={{ flex: 1 }}></View>
       </ImageBackground>
     </View>
   );
@@ -274,7 +312,7 @@ const styles = StyleSheet.create({
   myAccountIcon: {
     width: wp("18"),
     height: hp("10"),
-    resizeMode: "stretch"
+    resizeMode: "contain"
   },
   accountText: {
     color: "#263690",
@@ -370,27 +408,58 @@ const styles = StyleSheet.create({
   },
 
   contentText: {
+    display: "flex",
+    flexDirection: "row",
     backgroundColor: "#4545a0",
-    marginTop: hp("1")
+    marginTop: hp("0.5"),
+    padding: hp("0.8")
   },
   catCon: {
-    width: wp("40"),
+    width: wp("45"),
     zIndex: 1000,
-    height: "auto",
     borderRadius: 5,
-    paddingLeft: wp("1.5"),
-    paddingRight: wp("1.5"),
-    paddingBottom: wp("1.5"),
+    paddingTop: wp("4"),
+    paddingLeft: wp("3"),
+    paddingRight: wp("3"),
+    paddingBottom: wp("4"),
+
     position: "absolute",
     top: hp("11.5"),
-    left: hp("-5.2"),
+    left: hp("-7"),
     backgroundColor: "#feedd3"
+  },
+  contentArrow: {
+    position: "absolute",
+    top: hp("-2"),
+    left: hp("10")
   },
   catText: {
     fontSize: hp("1.5%"),
     fontWeight: "bold",
-    padding: wp("1"),
-    color: "#acbddd"
+    color: "#fff"
+  },
+  arrows: {
+    position: "absolute",
+    top: 0,
+    right: 0
+  },
+
+  headerStyle: {
+    height: hp("3"),
+    marginTop: wp("0.5"),
+  },
+  headerTitle: {
+    textAlign: "left",
+    color: "#3b448b"
+  },
+  radio: {
+    width: 7,
+    height: 7,
+    backgroundColor: "#fff",
+    color: "#fff",
+    borderRadius: 20,
+    marginTop: 5,
+    marginRight: 5
   }
 });
 

@@ -21,8 +21,9 @@ class Example extends Component {
       <View style={styles.container}>
         <View style={styles.container}>
           <ImageBackground
+            // resizeMode="stretch"
             style={styles.backImg}
-            source={require("../../assets/images/OnBoardingE1.png")}
+            source={require("../../assets/images/signin.png")}
           >
             <View
               style={
@@ -108,12 +109,12 @@ const styles = StyleSheet.create({
   transViewBlueStyle: {
     flex: 1,
     backgroundColor: "blue",
-    opacity: 0.5
+    opacity: 0.4
   },
   transViewGrayStyle: {
     flex: 1,
     backgroundColor: "gray",
-    opacity: 0.5
+    opacity: 0.4
   },
   transTextBlueStyle: {
     color: "#f5eac7"

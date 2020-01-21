@@ -1,16 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { Ionicons } from "@expo/vector-icons";
 //Import Navigation Container
 import AppContainer from "./navigation/stackNavigation";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  listenOrientationChange as lor,
-  removeOrientationListener as rol
-} from "react-native-responsive-screen";
+
+//Redux Config
+import { Provider } from "react-redux";
+import store from "./Redux/store";
+
+//firbase cnfig
+
+import firebase from "firebase";
+import { firebaseConfig } from "./config";
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +20,9 @@ class App extends React.Component {
     this.state = {
       isReady: false
     };
+    firebase.initializeApp(firebaseConfig);
   }
+
   async componentDidMount() {
     await Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -26,27 +30,17 @@ class App extends React.Component {
       ...Ionicons.font
     });
     this.setState({ isReady: true });
-    lor(this);
   }
-  componentWillUnmount() {
-    rol();
-  }
+
   render() {
-    const styles = StyleSheet.create({
-      container: {
-        width: wp("100%"),
-        height: hp("100%"),
-        // flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center"
-      }
-    });
     if (!this.state.isReady) {
       return <AppLoading />;
     }
-    return<AppContainer />;
-    
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    );
   }
 }
 

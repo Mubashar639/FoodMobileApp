@@ -20,7 +20,7 @@ const postArry = [
   {
     upperText:
       "L.I.T can help you easily and conveniently find transportation to visit your incarcerated loved ones",
-    imageSrc: require("../assets/images/OnBoardingE1.png"),
+    imageSrc: require("../assets/images/OnBoardingE1.jpeg"),
     lowerText:
       " When a loved one becaome incarcerated it not only affects them,but also may be an overwhelming time for the family. You want tohelp your loved one as much as you can during this difficulttime but may not know where to start"
   },
@@ -32,7 +32,7 @@ const postArry = [
   },
   {
     upperText: " Punctual, Professional & Polite",
-    imageSrc: require("../assets/images/OnBoardingE3.png"),
+    imageSrc: require("../assets/images/OnBoardingE3.jpg"),
     lowerText:
       "L.I.T professional carriers will hand pick your order, Package and deliver it to you! Hassle free"
   }
@@ -46,6 +46,7 @@ const Introduction = props => {
       <View style={styles.container}>
         <Swiper
           dotStyle={styles.dotStyle}
+          loop={false}
           activeDotStyle={styles.activeDotStyle}
           style={styles.wrapper}
           onIndexChanged={index => {
@@ -212,7 +213,7 @@ const styles = StyleSheet.create({
     flex: 3,
     // backgroundColor: "green",
     color: "#2e3c91",
-    fontSize: hp("2.5%"),
+    fontSize: hp("2.2%"),
     width: wp("80")
 
     // fontWeight: "bold"

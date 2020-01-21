@@ -1,52 +1,52 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text, Dimensions } from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  listenOrientationChange as lor,
-  removeOrientationListener as rol
-} from "react-native-responsive-screen";
-import { ScreenOrientation } from 'expo';
+import React from 'react';
+import { Text } from 'react-native';
+import { GoogleSignIn } from 'expo-google-sign-in';
 
-class Demo extends Component {
-  state = {
-    orientation: ""
+export default class AuthScreen extends React.Component {
+  state = { user: null };
+
+  // componentDidMount() {
+    // this.initAsync();
+  // }
+
+  // initAsync = async () => {
+  //   await GoogleSignIn.initAsync({
+  //     clientId: '<YOUR_IOS_CLIENT_ID>',
+  //   });
+  //   this._syncUserWithStateAsync();
+  // };
+
+  _syncUserWithStateAsync = async () => {
+    const user = await GoogleSignIn.signInSilentlyAsync();
+    this.setState({ user });
   };
-  componentDidMount() {
-      console.log(ScreenOrientation)
-    Dimensions.addEventListener("change", ({ window: { height, width } }) => {
-      if (width > height) {
-        ScreenOrientation.Orientation.LANDSCAPE = 'LANDSCAPE'
-        this.setState({ orientation: "Portrait" });
 
-      } else {
-        this.setState({ orientation: "landspacse" });
+  signOutAsync = async () => {
+    await GoogleSignIn.signOutAsync();
+    this.setState({ user: null });
+  };
+
+  signInAsync = async () => {
+    try {
+      await GoogleSignIn.askForPlayServicesAsync();
+      const { type, user } = await GoogleSignIn.signInAsync();
+      if (type === 'success') {
+        this._syncUserWithStateAsync();
       }
-    });
-  }
+    } catch ({ message }) {
+      alert('login: Error:' + message);
+    }
+  };
+
+  onPress = () => {
+    if (this.state.user) {
+      this.signOutAsync();
+    } else {
+      this.signInAsync();
+    }
+  };
 
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.textWrapper}>
-          <Text style={styles.myText}>Demo</Text>
-          <Text style={styles.myText}>{this.state.orientation}</Text>
-        </View>
-      </View>
-    );
+    return <Text onPress={this.onPress}>Toggle Auth</Text>;
   }
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  textWrapper: {
-    height: hp("70%"), // 70% of height device screen
-    width: wp("80%"), // 80% of width device screen
-    backgroundColor: "red"
-  },
-  myText: {
-    fontSize: hp("5") // End result looks like the provided UI mockup
-  }
-});
-
-export default Demo;

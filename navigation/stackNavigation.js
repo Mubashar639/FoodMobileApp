@@ -27,7 +27,7 @@ const AppStackNavigator = createStackNavigator(
   {
     Intro: {
       screen: IntroScreen
-      // screen: Demo
+      // screen: HomeScreen
     },
     Home: {
       screen: HomeScreen

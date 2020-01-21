@@ -9,9 +9,19 @@ import {
 import FacilitiesList from "../components/FacilitiesListComponent";
 import FacilitiesHeader from "../headers/FacilitiesListHeader";
 
+//Redux config
+import { connect } from "react-redux";
+import { GetFacilities } from "../Redux/Epics/facilities";
+
 class FacilitiesListScreen extends React.Component {
+  constructor(){
+    super()
+      this.state  = {
+        facilities:[]
+      
+    }
+  }
   static navigationOptions = ({ navigation }) => {
-    
     return {
       title: "FACILITIES",
       headerStyle: {
@@ -31,6 +41,12 @@ class FacilitiesListScreen extends React.Component {
       headerTitle: () => <FacilitiesHeader />
     };
   };
+
+  componentDidMount() {
+ let  re =  this.props.dispatch(GetFacilities())
+    console.log("Facilties",re);
+  }
+
   render() {
     return <FacilitiesList navigation={this.props.navigation} />;
   }
@@ -38,8 +54,12 @@ class FacilitiesListScreen extends React.Component {
 
 const styles = StyleSheet.create({
   leftButton: {
-    marginLeft:hp('2.5')
+    marginLeft: hp("2.5")
   }
 });
-
-export default FacilitiesListScreen;
+const mapStateToProps = (state) =>{
+return {
+  facilities :state.Facility.facilities
+}
+}
+export default connect(mapStateToProps)(FacilitiesListScreen);
