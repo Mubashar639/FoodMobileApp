@@ -22,7 +22,23 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
+import AwesomeAlert from "react-native-awesome-alerts";
 class MyCart extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = { showAlert: false };
+  }
+  showAlert = () => {
+    this.setState({
+      showAlert: true
+    });
+  };
+
+  hideAlert = () => {
+    this.setState({
+      showAlert: false
+    });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -92,11 +108,37 @@ class MyCart extends PureComponent {
                 />
               </Item>
               <View style={styles.buttonStyle}>
-                <Button style={{ borderRadius: 40,justifyContent:'center' }} success>
+                <Button
+                  style={{ borderRadius: 40, justifyContent: "center" }}
+                  onPress={() => {
+                    this.showAlert();
+                  }}
+                  success
+                >
                   <Text style={styles.buttonTextStyle}>Confirm</Text>
                 </Button>
+               
               </View>
             </Form>
+             <AwesomeAlert
+                  show={this.state.showAlert}
+                  showProgress={false}
+                  title="Order Confirm!"
+                  // message="Thnak you"
+                  closeOnTouchOutside={true}
+                  closeOnHardwareBackPress={false}
+                  showCancelButton={true}
+                  showConfirmButton={true}
+                  cancelText="No, cancel"
+                  confirmText="Yes, confirm it"
+                  confirmButtonColor="#DD6B55"
+                  onCancelPressed={() => {
+                    this.hideAlert();
+                  }}
+                  onConfirmPressed={() => {
+                    this.hideAlert();
+                  }}
+                />
           </ScrollView>
         </ImageBackground>
       </View>
@@ -150,7 +192,7 @@ const styles = StyleSheet.create({
     color: "#5a564b"
   },
   productE: {
-    color: "#ff4646",
+    color: "#ff4646"
     // marginLeft: hp("10")
   },
 
@@ -158,13 +200,13 @@ const styles = StyleSheet.create({
     width: "40%",
     height: hp("13"),
     // backgroundColor: "green",
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: "center",
+    justifyContent: "center"
   },
   productPrice: {
     fontSize: hp("3"),
     // textAlign: "",
-    color: "#5a564b",
+    color: "#5a564b"
     // marginLeft: hp("1")
   },
   totalCon: {
@@ -182,10 +224,10 @@ const styles = StyleSheet.create({
   },
   formStyle: {
     width: "95%",
-    height:hp('45'),
+    height: hp("45"),
     marginTop: hp("-3"),
     alignSelf: "center",
-    backgroundColor:'#fbf4e4'
+    backgroundColor: "#fbf4e4"
   },
   titleStyle: {
     marginLeft: hp("3"),
@@ -207,7 +249,7 @@ const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     fontSize: hp("3"),
-    color: "#fff",
+    color: "#fff"
     // marginLeft: hp("9")
   },
   backImg: {

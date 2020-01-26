@@ -1,6 +1,7 @@
 module.exports = {
   secret: "abcdefgh123456",
-  myDburi:'mongodb://forsale:asdf12345@ds151997.mlab.com:51997/forsale',
+  // myDburi:'mongodb://forsale:asdf12345@ds151997.mlab.com:51997/forsale',
+  myDburi:'mongodb://localhost:27017/RNAPP',
   google:{
     type:"oauth2",
     clientId:"741480805956-lblhpiv5tmcjsjrj004hjtbum1ensr2k.apps.googleusercontent.com",

@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Image,
   StyleSheet,
+  TouchableHighlight,
   TouchableOpacity,
   ScrollView
 } from "react-native";
@@ -18,30 +19,21 @@ import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
 let content = [
   {
     title: "MY TRIPS",
-    accountMenu: [
-      {
-        name: "My Trips",
-        navigateRout: "MyTrips"
-      }
-    ]
+
+    name: "Trip History",
+    navigateRout: "MyTrips"
   },
   {
     title: "PAYMENTS",
-    accountMenu: [
-      {
-        name: "Payments",
-        navigateRout: "Payments"
-      }
-    ]
+
+    name: "Cradit/Debit",
+    navigateRout: "Payments"
   },
   {
     title: "MY CARE PACKAGES",
-    accountMenu: [
-      {
-        name: "My Orders",
-        navigateRout: "Orders"
-      }
-    ]
+
+    name: "My Orders",
+    navigateRout: "Orders"
   }
 ];
 let _renderHeader = (items, expanded) => {
@@ -82,15 +74,59 @@ const Home = props => {
   const [isTransport, setIsTransport] = useState(false);
   const [isCare, setIsCare] = useState(false);
   const [contents] = useState(content);
+  const [accImg, setAccImg] = useState(
+    require("../assets/icons/myaccounticon.png")
+  );
+  const [facImg, setFacImg] = useState(
+    require("../assets/icons/facilitiesicon.png")
+  );
+  const [tranImg, setTranImg] = useState(
+    require("../assets/icons/transportationicon.png")
+  );
+  const [careImg, setCareImg] = useState(
+    require("../assets/icons/carepackagesicon.png")
+  );
+  chanageImage = (type, value) => {
+    if (type == "account" && value == "in") {
+      setAccImg(require("../assets/icons/accoutBlue.png"));
+    } else if (type == "account" && value == "out") {
+      setAccImg(require("../assets/icons/myaccounticon.png"));
+    } else if (type == "facility" && value == "in") {
+      setFacImg(require("../assets/icons/facility.png"));
+    } else if (type == "facility" && value == "out") {
+      setFacImg(require("../assets/icons/facilitiesicon.png"));
+    } else if (type == "transport" && value == "in") {
+      setTranImg(require("../assets/icons/transport.png"));
+    } else if (type == "transport" && value == "out") {
+      setTranImg(require("../assets/icons/transportationicon.png"));
+    } else if (type == "care" && value == "in") {
+      setCareImg(require("../assets/icons/care.png"));
+    } else if (type == "care" && value == "out") {
+      setCareImg(require("../assets/icons/carepackagesicon.png"));
+    }
+  };
   isShowMethod = type => {
     if (type == "account") {
       setIsAccount(!isAccount);
+      setIsFacilities(false);
+      setIsTransport(false);
+      setIsCare(false);
     } else if (type == "facility") {
       setIsFacilities(!isFacilities);
+      setIsAccount(false);
+      setIsTransport(false);
+      setIsCare(false);
     } else if (type == "Transport") {
       setIsTransport(!isTransport);
+      setIsFacilities(false);
+      setIsAccount(false);
+
+      setIsCare(false);
     } else if (type == "myCare") {
       setIsCare(!isCare);
+      setIsTransport(false);
+      setIsFacilities(false);
+      setIsAccount(false);
     }
   };
   navigatorMethod = type => {
@@ -114,9 +150,15 @@ const Home = props => {
 
         <View style={styles.accountIconCon}>
           <View style={styles.accContent}>
-            <TouchableOpacity onPress={() => isShowMethod("account")}>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPressIn={() => chanageImage("account", "in")}
+              onPressOut={() => chanageImage("account", "out")}
+              onPress={() => isShowMethod("account")}
+            >
               <Image
-                source={require("../assets/icons/myaccounticon.png")}
+                resizeMode="contain"
+                source={accImg}
                 style={styles.myAccountIcon}
               />
             </TouchableOpacity>
@@ -132,15 +174,42 @@ const Home = props => {
                 />
 
                 <ScrollView style={styles.scroll}>
-                  {contents.length ? (
-                    <Accordion
-                      dataArray={contents}
-                      expanded={0}
-                      expandMultiple
-                      renderHeader={_renderHeader}
-                      renderContent={_renderContent}
-                    />
-                  ) : null}
+                  {contents.length
+                    ? contents.map((item, i) => {
+                        return (
+                          <View key={i}>
+                            <View style={styles.headerStyle}>
+                              <Text style={styles.headerTitle}>
+                                {item.title}
+                              </Text>
+                              <View style={styles.arrows}>
+                                <AntDesign
+                                  name="caretdown"
+                                  color={"#27368e"}
+                                  size={hp("1.5")}
+                                />
+                              </View>
+                            </View>
+                            <View style={styles.contentStyle}>
+                              <TouchableOpacity
+                                onPress={() =>
+                                  navigatorMethod(item.navigateRout)
+                                }
+                              >
+                                <View style={styles.contentText}>
+                                  <View style={styles.radio}></View>
+                                  <View>
+                                    <Text style={styles.catText}>
+                                      {item.name}
+                                    </Text>
+                                  </View>
+                                </View>
+                              </TouchableOpacity>
+                            </View>
+                          </View>
+                        );
+                      })
+                    : null}
                   {/* <View style={{ height: 96 }} /> */}
                 </ScrollView>
               </View>
@@ -154,11 +223,15 @@ const Home = props => {
 
         <View style={styles.facilitiesIconCon}>
           <View style={styles.facilitiesContent}>
-            <TouchableOpacity onPress={() => isShowMethod("facility")}>
-              <Image
-                source={require("../assets/icons/facilitiesicon.png")}
-                style={styles.facilitiesIcon}
-              />
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPressIn={() => chanageImage("facility", "in")}
+              onPressOut={() => chanageImage("facility", "out")}
+              onPress={() => isShowMethod("facility")}
+            >
+              <Image 
+               resizeMode= "contain"
+              source={facImg} style={styles.facilitiesIcon} />
             </TouchableOpacity>
             <Text style={styles.facilitiesText}>Facilities</Text>
 
@@ -198,11 +271,15 @@ const Home = props => {
         {/* Transport */}
         <View style={styles.transportIconCon}>
           <View style={styles.transportContent}>
-            <TouchableOpacity onPress={() => isShowMethod("Transport")}>
-              <Image
-                source={require("../assets/icons/transportationicon.png")}
-                style={styles.transportIcon}
-              />
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPressIn={() => chanageImage("transport", "in")}
+              onPressOut={() => chanageImage("transport", "out")}
+              onPress={() => isShowMethod("Transport")}
+            >
+              <Image 
+              resizeMode= "contain"
+              source={tranImg} style={styles.transportIcon} />
             </TouchableOpacity>
             <Text style={styles.transportText}>Transport</Text>
 
@@ -234,11 +311,15 @@ const Home = props => {
         {/* my care */}
         <View style={styles.myCareIconCon}>
           <View style={styles.mycareContent}>
-            <TouchableOpacity onPress={() => isShowMethod("myCare")}>
-              <Image
-                source={require("../assets/icons/carepackagesicon.png")}
-                style={styles.myCareIcon}
-              />
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPressIn={() => chanageImage("care", "in")}
+              onPressOut={() => chanageImage("care", "out")}
+              onPress={() => isShowMethod("myCare")}
+            >
+              <Image 
+              resizeMode= "contain"
+              source={careImg} style={styles.myCareIcon} />
             </TouchableOpacity>
             <Text style={styles.myCareText}>Care Packages</Text>
 
@@ -252,7 +333,7 @@ const Home = props => {
                 />
 
                 <View>
-                  <TouchableOpacity onPress={() => navigatorMethod("Orders")}>
+                  <TouchableOpacity onPress={() => navigatorMethod("CarePackages")}>
                     <View style={styles.contentText}>
                       <View style={styles.radio}></View>
                       <View>
@@ -311,8 +392,7 @@ const styles = StyleSheet.create({
   },
   myAccountIcon: {
     width: wp("18"),
-    height: hp("10"),
-    resizeMode: "contain"
+    height: hp("10")
   },
   accountText: {
     color: "#263690",
@@ -332,6 +412,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   facilitiesContent: {
+    // zIndex:100,
     top: hp("-2"),
     left: hp("9"),
     flexDirection: "row",
@@ -341,7 +422,7 @@ const styles = StyleSheet.create({
   facilitiesIcon: {
     width: wp("18"),
     height: hp("10"),
-    resizeMode: "stretch"
+    resizeMode: "contain"
   },
   facilitiesText: {
     color: "#263690",
@@ -351,6 +432,7 @@ const styles = StyleSheet.create({
   },
   transportIconCon: {
     flex: 1,
+
     // backgroundColor: "green",
     // opacity: 0.3,
     justifyContent: "center",
@@ -370,7 +452,7 @@ const styles = StyleSheet.create({
   transportIcon: {
     width: wp("18"),
     height: hp("10"),
-    resizeMode: "stretch"
+    resizeMode: "contain"
   },
   transportText: {
     color: "#263690",
@@ -398,7 +480,7 @@ const styles = StyleSheet.create({
   myCareIcon: {
     width: wp("18"),
     height: hp("10"),
-    resizeMode: "stretch"
+    resizeMode: "contain"
   },
   myCareText: {
     color: "#263690",
@@ -415,7 +497,7 @@ const styles = StyleSheet.create({
     padding: hp("0.8")
   },
   catCon: {
-    width: wp("45"),
+    width: wp("50"),
     zIndex: 1000,
     borderRadius: 5,
     paddingTop: wp("4"),
@@ -425,13 +507,13 @@ const styles = StyleSheet.create({
 
     position: "absolute",
     top: hp("11.5"),
-    left: hp("-7"),
+    left: hp("-9"),
     backgroundColor: "#feedd3"
   },
   contentArrow: {
     position: "absolute",
     top: hp("-2"),
-    left: hp("10")
+    left: hp("12")
   },
   catText: {
     fontSize: hp("1.5%"),
@@ -446,7 +528,7 @@ const styles = StyleSheet.create({
 
   headerStyle: {
     height: hp("3"),
-    marginTop: wp("0.5"),
+    marginTop: wp("0.5")
   },
   headerTitle: {
     textAlign: "left",

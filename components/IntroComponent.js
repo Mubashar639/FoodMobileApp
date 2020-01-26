@@ -55,13 +55,30 @@ const Introduction = props => {
           showsButtons={indexNo == 2 ? false : true}
           buttonWrapperStyle={{
             backgroundColor: "transparent",
-            position: "absolute",
-            top: 300,
-            left: -200
-            // flex: 1,
+            // position: "absolute",
+            top: hp('46'),
+            left: wp('-28'),
+            opacity:1
           }}
           prevButton={<Text></Text>}
-          nextButton={<Text style={styles.nextButtonContainer}>Next</Text>}
+          nextButton={<View
+          style = {{
+            //  backgroundColor:'red',
+          width: wp("40"),
+          height:hp('6'),
+          alignContent: "center",
+          justifyContent: "center",
+          textAlign:'center',
+          borderRadius:hp('5'),
+          borderColor:'#2e3d91',
+          borderStyle:'solid',
+          borderWidth:1
+        }}
+          ><Text style= {{
+            fontSize:hp('2.2'),
+            textAlign:'center',
+            color:'#2e3d91'
+          }}>CONTINUE</Text></View>}
         >
           {posts.map((post, index) => (
             <View key={index} style={styles.slide1}>
@@ -85,7 +102,11 @@ const Introduction = props => {
               </View>
               {/* image */}
               <View style={styles.imageStyle}>
-                <Image source={post.imageSrc} style={styles.backgroundImage} />
+                <Image
+                  // resizeMode = 'stretch'
+                  source={post.imageSrc}
+                  style={styles.backgroundImage}
+                />
               </View>
               <View style={styles.dotCon}></View>
               {/* bottom text */}
@@ -102,14 +123,15 @@ const Introduction = props => {
                       <Text>get started</Text>
                     </Button>
                   ) : (
-                    <Button
-                      // onPress={() => setIndexNo(indexNo + 1)}
-                      style={styles.conButton}
-                      bordered
-                      rounded
-                    >
-                      <Text>continue</Text>
-                    </Button>
+                    // <Button
+                    //   // onPress={() => setIndexNo(indexNo + 1)}
+                    //   style={styles.conButton}
+                    //   bordered
+                    //   rounded
+                    // >
+                    //   <Text>continue</Text>
+                    // </Button>
+                    null
                   )}
                 </View>
               </View>
@@ -147,18 +169,28 @@ const styles = StyleSheet.create({
   conButton: {
     // justifyContent:'flex-start',
     width: wp("40"),
+    height:hp('6'),
+
     marginLeft: wp("20"),
     marginTop: wp("5"),
     alignContent: "center",
     justifyContent: "center"
   },
   nextButtonContainer: {
-    width: wp("35"),
-    height: hp("8"),
-    left: wp("18"),
-    top: wp("3"),
-    backgroundColor: "red",
-    opacity: 0
+    
+    fontSize:hp('3'),
+   
+    textAlign:'center',
+
+    width: wp("40"),
+    height: hp("7"),
+    // left: wp("30"),
+    // top: wp("3"),
+    
+    // alignContent: "center",
+    // justifyContent: "center"
+    // opacity: 1,
+   
   },
   slide2: {
     flex: 1,
@@ -211,6 +243,7 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     flex: 3,
+    textAlign: "center",
     // backgroundColor: "green",
     color: "#2e3c91",
     fontSize: hp("2.2%"),
@@ -225,7 +258,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 3,
     width: wp("100"),
-    resizeMode: "stretch",
+    // height:hp('90'),
+    // resizeMode: "stretch",
     margin: 0,
     padding: 0
   }

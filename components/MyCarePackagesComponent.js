@@ -23,25 +23,33 @@ class MyCarePackages extends React.Component {
       isContentVisible: false,
       contents: [
         {
-          title: "Title 1",
+          title: "Prepared Food",
           FacilitiesDetails: "Hi. I love this component. What do you think?",
           address: "street 293 9 2 sarder faisalabad",
-          icon: require("../assets/icons/uparrow.png"),
+          icon: require("../assets/icons/serving-dish.png"),
           subContents: ["Egg", "Bred", "Naan", "Tea"]
         },
         {
-          title: "Title 1",
+          title: "Snacks",
           FacilitiesDetails: "Hi. I love this component. What do you think?",
           address: "street 293 9 2 sarder faisalabad",
-          icon: require("../assets/icons/uparrow.png"),
+          icon: require("../assets/icons/walnut.png"),
 
           subContents: ["Egg", "Bred", "Naan", "Tea"]
         },
         {
-          title: "Title 1",
+          title: "Soup/Canned Items",
           FacilitiesDetails: "Hi. I love this component. What do you think?",
           address: "street 293 9 2 sarder faisalabad",
-          icon: require("../assets/icons/uparrow.png"),
+          icon: require("../assets/icons/super-bowl.png"),
+
+          subContents: ["Egg", "Bred", "Naan", "Tea"]
+        },
+        {
+          title: "Drinks",
+          FacilitiesDetails: "Hi. I love this component. What do you think?",
+          address: "street 293 9 2 sarder faisalabad",
+          icon: require("../assets/icons/cocktail.png"),
 
           subContents: ["Egg", "Bred", "Naan", "Tea"]
         }
@@ -52,7 +60,7 @@ class MyCarePackages extends React.Component {
   _renderHeader = (items, expanded) => {
     return (
       <View style={styles.headerStyle}>
-        <Entypo style={styles.headerIcon} name="drink" size={30} color="gray" />
+        <Image source = {items.icon} style = {{width:wp('13') ,height:hp('7')}} />
         <Text style={styles.headerTitle}>{items.title}</Text>
         <View style={styles.arrows}>
           {expanded ? (
@@ -71,7 +79,7 @@ class MyCarePackages extends React.Component {
           <ListItem style={styles.contentStyle} disabled key={i}>
             <Radio  color="#fff" selected={true} selectedColor="#ffeed0" />
             <Body key={i}>
-              <Text style={styles.contentText}>{subItem}</Text>
+              <Text onPress = {()=>this.props.navigation.navigate('Products')} style={styles.contentText}>{subItem}</Text>
             </Body>
           </ListItem>
         ))}
@@ -117,6 +125,7 @@ const styles = StyleSheet.create({
     paddingTop: wp("-3")
   },
   headerStyle: {
+    flexDirection:'row',
     width: wp("96"),
     height: hp("7.5"),
     alignSelf: "center",
@@ -132,7 +141,7 @@ const styles = StyleSheet.create({
     fontSize: hp("3"),
     color: "#3b448b",
     padding: wp("2.5"),
-    paddingLeft:wp('10')
+    // paddingLeft:wp('10')
   },
   headerIcon: { position: "absolute", left: hp('2'), top: hp('2') },
   contentStyle: {

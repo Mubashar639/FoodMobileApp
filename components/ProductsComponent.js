@@ -3,6 +3,17 @@ import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import { Card, CardItem, Radio, Left, Button } from "native-base";
 
 class Products extends PureComponent {
+  state = {
+    productQty: 0
+  };
+  addProductQty = () => {
+    this.setState({ productQty: this.state.productQty + 1 });
+  };
+  subProductQty = () => {
+    this.state.productQty > 0
+      ? this.setState({ productQty: this.state.productQty - 1 })
+      : this.setState({ productQty: 0 });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -22,11 +33,19 @@ class Products extends PureComponent {
                     <Text style={styles.productTitle}>(12 Bottle)</Text>
                     <Text style={styles.productSize}>250ml</Text>
                     <View style={styles.productBtnCon}>
-                      <Button style={styles.nagtiveBtn}>
+                      <Button
+                        style={styles.nagtiveBtn}
+                        onPress={this.subProductQty}
+                      >
                         <Text style={styles.nagtiveBtnText}>-</Text>
                       </Button>
-                      <Text style={styles.productQ}>5</Text>
-                      <Button style={styles.plusBtn}>
+                      <Text style={styles.productQ}>
+                        {this.state.productQty > 0 ? this.state.productQty : 0}
+                      </Text>
+                      <Button
+                        style={styles.plusBtn}
+                        onPress={this.addProductQty}
+                      >
                         <Text style={styles.plusBtnText}>+</Text>
                       </Button>
                     </View>
@@ -47,7 +66,7 @@ class Products extends PureComponent {
           <Button style={styles.bottomBtn} large>
             <Text style={styles.bottomBtnText}>Add More</Text>
           </Button>
-          <Button success style={styles.bottomBtn} large>
+          <Button onPress = {()=>this.props.navigation.navigate('MyCart')} success style={styles.bottomBtn} large>
             <Text style={styles.bottomBtnText}>View Cart</Text>
           </Button>
         </View>

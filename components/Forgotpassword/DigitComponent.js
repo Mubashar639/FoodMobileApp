@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-const DigitComponent = () => {
+const DigitComponent = (props) => {
   return (
     <View style={styles.container}>
       <Image
@@ -13,7 +13,9 @@ const DigitComponent = () => {
         source={require("../../assets/images/forgetpasswordscreenlogo.png")}
       />
       <Form style={styles.formStyle}>
-        <Text style={styles.titleStyle}>
+        <Text
+         onPress={()=>props.navigation.navigate("Email")}
+        style={styles.titleStyle}>
           You will get a 6 digit pin on your Email in 60 sec. Enter here if you
           didn`t get get the email, Please <Text  style={styles.titleStyle} style = {{color:'#3f51b5'}}>Try again!</Text>
         </Text>
@@ -45,7 +47,9 @@ const DigitComponent = () => {
           </Item>
         </View>
         <View style={styles.buttonStyle}>
-          <Button style = {{justifyContent:'center'}} large>
+          <Button 
+           onPress={()=>props.navigation.navigate("NewPass")}
+          style = {{justifyContent:'center'}} large>
             <Text style={styles.buttonTextStyle}>Next</Text>
           </Button>
         </View>

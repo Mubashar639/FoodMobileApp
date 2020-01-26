@@ -34,6 +34,9 @@ const UserModel = mongoose.Schema({
   },
   photos: [],
   passwordCreatedAt: Date,
+  gender: {
+    type: String
+  },
   rule: {
     type: String,
     default: "user",

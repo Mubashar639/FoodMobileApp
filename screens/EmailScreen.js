@@ -6,9 +6,9 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 //Import Components
-import ForgotPassword from "../components/Forgotpassword/index";
+import Email from "../components/Forgotpassword/EmailComponent";
 
-class ForgotPasswordScreen extends React.Component {
+class EmailScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Forgot Password",
@@ -36,7 +36,7 @@ class ForgotPasswordScreen extends React.Component {
     };
   };
   render() {
-    return <ForgotPassword navigation={this.props.navigation} />;
+    return <Email navigation={this.props.navigation} />;
   }
 }
 const styles = StyleSheet.create({
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
     marginLeft: hp('2.5')
   }
 });
-export default ForgotPasswordScreen;
+export default EmailScreen;

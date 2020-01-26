@@ -7,13 +7,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-const MyTripsHeader = props => {
+const MyOrdersHeader = props => {
   const [isSearch, setIsSearch] = useState(false);
   //   bottle-wine
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.headerTitle}>MY TRIPS</Text>
+        <Text style={styles.headerTitle}>MY CARE PACKAGES </Text>
         <Image
           source = {require('../assets/icons/icon.png')}
           style={styles.iconStyle}
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default MyTripsHeader;
+export default MyOrdersHeader;

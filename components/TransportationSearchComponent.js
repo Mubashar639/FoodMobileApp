@@ -21,7 +21,7 @@ class TransportationsSearch extends PureComponent {
               </Item>
 
               <View style={styles.buttonStyle}>
-                <Button style={{ borderRadius: 40, justifyContent: "center" }}>
+                <Button onPress = {()=>this.props.navigation.navigate('Transport')} style={{ borderRadius: 40, justifyContent: "center" }}>
                   <Text style={styles.buttonTextStyle}>Search</Text>
                 </Button>
               </View>

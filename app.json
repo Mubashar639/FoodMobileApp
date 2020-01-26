@@ -23,7 +23,6 @@
       "**/*"
     ],
     "ios": {
-      
       "bundleIdentifier": "com.foodmobileapp.foodmobileapp"
     },
     "android": {

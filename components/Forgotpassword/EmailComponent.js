@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-const EmailComponent = () => {
+const EmailComponent = (props) => {
   return (
     <View style={styles.container}>
       <Image
@@ -19,7 +19,9 @@ const EmailComponent = () => {
         </Item>
 
         <View style={styles.buttonStyle}>
-          <Button style = {{justifyContent:'center'}} large>
+          <Button 
+          onPress={()=>props.navigation.navigate("Digit")}
+          style = {{justifyContent:'center'}} large>
             <Text style={styles.buttonTextStyle}>Next</Text>
           </Button>
         </View>

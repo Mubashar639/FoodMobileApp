@@ -19,14 +19,15 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected2: undefined
+      gender: undefined,
+      name: "",
+      email: "",
+      password: "",
+      birth: "",
+      role:"user"
     };
   }
-  onValueChange2(value) {
-    this.setState({
-      selected2: value
-    });
-  }
+
   render() {
     return (
       <View
@@ -39,8 +40,14 @@ class Signup extends React.Component {
       >
         <View style={{ flex: 1, marginTop: hp("1") }}>
           <Item>
-            <Icon type="FontAwesome" name="user-circle-o" style={{ color: "#4050b5" }} />
+            <Icon
+              type="FontAwesome"
+              name="user-circle-o"
+              style={{ color: "#4050b5" }}
+            />
             <Input
+              onChangeText={e => this.setState({ name: e })}
+              name="name"
               placeholder="Your Full Name"
               placeholderTextColor="#dddddd"
             />
@@ -54,6 +61,8 @@ class Signup extends React.Component {
               style={{ color: "#4050b5" }}
             />
             <Input
+              name="email"
+              onChangeText={e => this.setState({ email: e })}
               placeholder="Your-Email@gmail.com"
               placeholderTextColor="#dddddd"
             />
@@ -66,7 +75,12 @@ class Signup extends React.Component {
               name="lock-outline"
               style={{ color: "#4050b5" }}
             />
-            <Input placeholder="************" placeholderTextColor="#dddddd" />
+            <Input
+              name="password"
+              onChangeText={e => this.setState({ password: e })}
+              placeholder="************"
+              placeholderTextColor="#dddddd"
+            />
           </Item>
         </View>
         <View style={{ flex: 1 }}>
@@ -76,7 +90,12 @@ class Signup extends React.Component {
               name="calendar"
               style={{ color: "#4050b5" }}
             />
-            <Input placeholder="Date Of Birth" placeholderTextColor="#dddddd" />
+            <Input
+              name="birth"
+              onChangeText={e => this.setState({ birth: e })}
+              placeholder="Date Of Birth"
+              placeholderTextColor="#dddddd"
+            />
           </Item>
         </View>
         <View style={{ flex: 1, alignItems: "center" }}>
@@ -87,21 +106,26 @@ class Signup extends React.Component {
               iosIcon={<Icon name="arrow-down" />}
               style={{ width: undefined }}
               placeholder="Gender"
-              placeholderTextColor = '#dddd'
+              placeholderTextColor="#dddd"
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
-              selectedValue={this.state.selected2}
-              onValueChange={this.onValueChange2.bind(this)}
+              selectedValue={this.state.gender}
+              onValueChange={e => this.setState({ gender: e })}
             >
-              <Picker.Item label="Male" value="key0" />
-              <Picker.Item label="Female" value="key1" />
+              <Picker.Item label="Male" value="Male" />
+              <Picker.Item label="Female" value="Female" />
             </Picker>
           </Item>
         </View>
 
         <View style={styles.buttonStyle}>
-          <Button style={{ justifyContent: "center" }}
-            onPress={() => this.props.navigation.navigate("Home")}
+          <Button
+            style={{ justifyContent: "center" }}
+            onPress={() => {
+              console.log(this.state);
+              this.props.getSignupData(this.state);
+              // this.props.navigation.navigate("Home");
+            }}
           >
             <Text style={styles.buttonTextStyle}>Sign Up</Text>
           </Button>

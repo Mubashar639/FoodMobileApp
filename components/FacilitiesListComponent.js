@@ -23,50 +23,62 @@ class FacilitiesList extends React.Component {
       isContentVisible: false,
       contents: [
         {
-          title: "Title 1",
+          title: "Albion correctional facility",
           TransportationDetails: [
             {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
+              address: "135 State Street Auturn,New York",
+
+              phone: "(585) 891-1343",
+              gender: "Male",
+              security: "Medium"
             }
           ]
         },
         {
-          title: "Title 1",
+          title: "Albion correctional facility",
           TransportationDetails: [
             {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
+              address: "135 State Street Auturn,New York",
+
+              phone: "(585) 891-1343",
+              gender: "Male",
+              security: "Medium"
             }
           ]
         },
         {
-          title: "Title 1",
+          title: "Albion correctional facility",
           TransportationDetails: [
             {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
+              address: "135 State Street Auturn,New York",
+
+              phone: "(585) 891-1343",
+              gender: "Male",
+              security: "Medium"
             }
           ]
         },
         {
-          title: "Title 1",
+          title: "Albion correctional facility",
           TransportationDetails: [
             {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
+              address: "135 State Street Auturn,New York",
+
+              phone: "(585) 891-1343",
+              gender: "Male",
+              security: "Medium"
+            }
+          ]
+        },
+        {
+          title: "Albion correctional facility",
+          TransportationDetails: [
+            {
+              address: "135 State Street Auturn,New York",
+
+              phone: "(585) 891-1343",
+              gender: "Male",
+              security: "Medium"
             }
           ]
         }
@@ -94,28 +106,21 @@ class FacilitiesList extends React.Component {
         {items.TransportationDetails.map((item, i) => (
           <View key={i}>
             <ListItem>
-              <Text style={styles.textStyle}>
-                Facilities: {item.facilities}
-              </Text>
+              <Text style={styles.textStyle}>Facilities: Details</Text>
             </ListItem>
             <ListItem>
-              <Text style={styles.textStyle}>
-                DayOfOperation: MON, TUE ,WED{" "}
-              </Text>
+              <Text style={styles.textStyle}>Address:  {item.address}</Text>
             </ListItem>
             <ListItem>
-              <Text style={styles.textStyle}>
-                TicketPrice: {item.ticketPrice}
-              </Text>
+              <Text style={styles.textStyle}>Phone:  {item.phone}</Text>
             </ListItem>
             <ListItem>
-              <Text style={styles.textStyle}>
-                PickUpLocation: {item.pickUpLocation}
-              </Text>
+              <Text style={styles.textStyle}>Male/Female:  {item.gender}</Text>
             </ListItem>
             <ListItem>
-              <Text style={styles.textStyle}>PhoneNo: {item.phoneNo}</Text>
+              <Text style={styles.textStyle}>Security:  {item.security}</Text>
             </ListItem>
+        
           </View>
         ))}
       </View>
@@ -152,7 +157,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignContent: "center",
+    alignContent: "center"
   },
 
   dropDownItem: {
@@ -181,8 +186,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "auto",
     paddingLeft: hp("1"),
-    backgroundColor:'#fbf4e4'
-
+    backgroundColor: "#fbf4e4"
   },
   contentText: {
     fontSize: hp("2"),
@@ -204,8 +208,7 @@ const styles = StyleSheet.create({
   backImg: {
     flex: 1,
     justifyContent: "center",
-    alignContent: "center",
- 
+    alignContent: "center"
   }
 });
 

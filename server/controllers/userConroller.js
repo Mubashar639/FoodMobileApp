@@ -49,7 +49,7 @@ exports.userRegister = errCatch(async (req, res, next) => {
         success: true,
         token,
         data: {
-            user
+            user 
         }
     })
 })

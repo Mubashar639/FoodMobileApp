@@ -1,5 +1,5 @@
 // import jwt from "jsonwebtoken";
-// import axios from "axios";
+import axios from "axios";
 // export const AppsList = [
 //   {
 //     _id: 1,
@@ -265,8 +265,15 @@
 // export const appAccountModel = new AppAccountModel();
 // // export const Url = "http://localhost:5000/"
 
-// export const Url = "http://localhost:8080";
-// export const baseUrl = axios.create({ baseURL: Url });
+export const Url = "http://localhost:5000";
+export const baseUrl = axios.create({
+  baseURL: Url,
+
+  headers: {
+    "Content-Type": "application/json"
+  },
+  responseType: "json"
+});
 
 // // eslint-disable-next-line
 

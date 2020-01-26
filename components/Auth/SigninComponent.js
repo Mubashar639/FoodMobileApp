@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert,TouchableOpacity } from "react-native";
 import { Item, Button, Input, Icon, CheckBox } from "native-base";
 //firebase config
 import firebase from "firebase";
@@ -67,13 +67,13 @@ class Signin extends React.Component {
         // Check if we are already signed-in Firebase with the correct user.
         if (!this.isUserEqual(googleUser, firebaseUser)) {
           // Build Firebase credential with the Google ID token.
-          console.log('getGoogle user',googleUser)
+          console.log("getGoogle user", googleUser);
           var credential = firebase.auth.GoogleAuthProvider.credential(
             googleUser.idToken,
             googleUser.accessToken
           );
           // Sign in with credential from the Google user.
-          console.log('getGoogle user',credential)
+          console.log("getGoogle user", credential);
 
           firebase
             .auth()
@@ -82,7 +82,7 @@ class Signin extends React.Component {
               console.log("user signed in ", result);
             })
             .catch(function(error) {
-            console.log(error)
+              console.log(error);
             });
         } else {
           console.log("User already signed-in Firebase.");
@@ -95,7 +95,7 @@ class Signin extends React.Component {
       // iosClientId: `452620192433-iq5dpv80kaf06l7dbto9b0m8e2hfvvts.apps.googleusercontent.com`,
       androidClientId: `452620192433-d0iv8kihjv0u0rn2jnrmmt1h57ou4t0d.apps.googleusercontent.com`
     });
-    
+
     if (userData.type === "success") {
       this.onSignIn(userData);
       console.log("google", userData);
@@ -143,9 +143,15 @@ class Signin extends React.Component {
 
             <Text style={{ marginLeft: hp("3") }}>Remember Me</Text>
           </View>
-          <View>
-            <Text>Forgot Password</Text>
-          </View>
+          <TouchableOpacity
+            accessible={true}
+            onPress={()=>this.props.navigation.navigate("Email")}
+            accessibilityRole="link"
+          >
+            <View>
+              <Text style = {{color:'#3b4a9c'}}>Forgot Password</Text>
+            </View>
+          </TouchableOpacity>
         </View>
         <View style={{ flex: 1, alignItems: "center" }}>
           <Text

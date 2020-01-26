@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet ,Image } from "react-native";
+
 import {
   EvilIcons,
   AntDesign,
@@ -24,17 +25,16 @@ class RulesScreen extends React.Component {
       },
       headerTitleStyle: {
         fontWeight: "bold",
-        fontSize: hp('3'),
+        fontSize: hp('2.7'),
         color: "#3b448b",
         textAlign: "center",
         marginLeft: hp('6')
       },
       headerRight: () => (
-        <MaterialCommunityIcons
-        style={styles.iconStyle}
-        name="bottle-wine"
-        size={hp('5')}
-        color="gray"
+        <Image
+          source = {require('../assets/icons/icon.png')}
+          style={styles.iconStyle}
+       
         />
       ),
       headerLeft: () => (
@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
 
   },
   iconStyle:{
+    width :wp('6'),
+    height:hp('5'),
     position: "absolute",
     right: wp('4'),
   }

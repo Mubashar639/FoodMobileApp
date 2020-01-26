@@ -9,14 +9,23 @@ import {
 import Signin from "./SigninComponent";
 import Signup from "./SignupComponent";
 import Tabs from "react-native-tabs";
-
+import { connect } from "react-redux";
+import  SignupAction  from "../../Redux/Epics/signup";
 class Example extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: "signin" };
+    this.state = {
+      page: "signin",
+    };
+  }
+  getSignupData = (data)=>{
+    let self = this
+    self.props.dispatch(SignupAction(data))
   }
   render() {
     var self = this;
+    // console.log('PRops',this.props)
+
     return (
       <View style={styles.container}>
         <View style={styles.container}>
@@ -75,7 +84,7 @@ class Example extends Component {
           {this.state.page === "signin" ? (
             <Signin navigation={this.props.navigation} />
           ) : (
-            <Signup navigation={this.props.navigation} />
+            <Signup getSignupData = {this.getSignupData} navigation={this.props.navigation} />
           )}
         </View>
       </View>
@@ -123,4 +132,4 @@ const styles = StyleSheet.create({
     color: "blue"
   }
 });
-export default Example;
+export default connect()(Example);

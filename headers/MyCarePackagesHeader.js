@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Image} from 'react-native'
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { EvilIcons, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import {
@@ -12,12 +13,10 @@ const MyCarePackagesHeader = props => {
     <View style={styles.container}>
       <View>
         <Text style={styles.headerTitle}>MY CARE PACKAGES</Text>
-        <MaterialCommunityIcons
-          onPress={() => setIsSearch(!isSearch)}
+        <Image
+          source = {require('../assets/icons/icon.png')}
           style={styles.iconStyle}
-          name="bottle-wine"
-          size={hp('5')}
-          color="gray"
+       
         />
       </View>
     </View>
@@ -35,6 +34,8 @@ const styles = StyleSheet.create({
     textAlign:'center'
   },
   iconStyle: {
+    width :wp('6'),
+    height:hp('5'),
     position: "absolute",
       right: wp('4'),
       top:hp('-0.5')

@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-class MyTrips extends Component {
+class MyOrders extends Component {
   render() {
     return (
         <ImageBackground
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
  
   }
 });
-export default MyTrips;
+export default MyOrders;
