@@ -11,12 +11,11 @@ const ProductsHeader = props => {
   //   bottle-wine
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.headerTitle}>PRODUCTS</Text>
+      <View style = {styles.titleCon}><Text style={styles.headerTitle}>{props.name}</Text></View>
+      <View style = {styles.ImgCon}>
         <Image
           source = {require('../assets/icons/icon.png')}
           style={styles.iconStyle}
-       
         />
       </View>
     </View>
@@ -24,20 +23,37 @@ const ProductsHeader = props => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: wp("100%")
+    display:'flex',
+    // width: wp("100%"),
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row'
+  },
+  titleCon:{
+    flex:1,
+    display:'flex',
+    alignItems:'center',
+    // backgroundColor:'red'
+  },
+  ImgCon:{
+    flex:0.2,
+    alignItems:'center',
+
+    // backgroundColor:'blue'
+
   },
   headerTitle: {
     fontWeight: "bold",
       fontSize: hp('3'),
       color: "#3b448b",
-      marginLeft: wp('22'),
+      // marginLeft: wp('22'),
    
   },
   iconStyle: {
     width :wp('6'),
     height:hp('5'),
-    position: "absolute",
-      left: hp('42'),
+    // position: "absolute",
+      // left: hp('42'),
     //   top:hp('-0.5')
   },
 

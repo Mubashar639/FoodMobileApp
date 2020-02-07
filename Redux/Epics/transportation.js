@@ -1,5 +1,5 @@
 import {
-    // transport_failed,
+    transport_failed,
     
   
     transport_success,
@@ -10,7 +10,7 @@ import {
   
   } from "../Actions/authentication";
   
-  import { message } from "antd";
+  // import { message } from "antd";
   import { baseUrl } from "../../shared";
   
   
@@ -22,14 +22,14 @@ import {
         if (res.status === 200) {
 
           dispatch(transport_success(res.data.data.transport));
-          message.success("success");
-          console.log(res.data)
+          // message.success("success");
+          // console.log(res.data)
         }
       })
       .catch((err) => {
-        message.error(err.message);
-        // dispatch(transport_failed("Some thing went wrong"));
-        console.log(err)
+        // message.error(err.message);
+        dispatch(transport_failed("Some thing went wrong"));
+        // console.log(err)
       });
   };
   
@@ -46,16 +46,16 @@ import {
       )
       .then(res => {
         if (res.status === 201) {
-          console.log(res.data)
+          // console.log(res.data)
           dispatch(transport_add(res.data.data.transport));
-          message.success("transport added");
+          // message.success("transport added");
         } else {
-          message.error(res.message);
+          // message.error(res.message);
           // console.log(res)
         }
       })
       .catch((err) => {
-        message.error(err.message);
+        // message.error(err.message);
         // dispatch(login_failed("Some thing went wrong"));
         console.log(err)
       });

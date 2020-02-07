@@ -17,15 +17,17 @@ import {
     baseUrl
       .get('api/order/all')
       .then(res => {
+        console.log('before',res)
+
         if (res.status === 200) {
   
-          dispatch(order_success(res.data.orders));
-          message.success("success");
-          // console.log(res)
+          // dispatch(order_success(res.data.orders));
+          // message.success("success");
+          console.log(res)
         }
       })
       .catch((err) => {
-        message.error(err.message);
+        // message.error(err.message);
         // dispatch(order_failed("Some thing went wrong"));
         console.log(err)
       });

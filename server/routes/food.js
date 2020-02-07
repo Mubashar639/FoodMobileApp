@@ -1,14 +1,14 @@
 const Router = require("express").Router();
 const multer = require("multer");
 const Products = require("../models/foodModel");
-const errAsync = require("../utils/asynError")
+const errAsync = require("../utils/asynError");
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "public/uploads");
   },
   filename: function(req, file, cb) {
-      const ext=file.mimetype.split("/")[1]
+    const ext = file.mimetype.split("/")[1];
     cb(null, Date.now() + "-" + file.originalname);
   }
 });
@@ -17,7 +17,11 @@ var upload = multer({ storage: storage });
 
 Router.route("/")
   .get((req, res, next) => {
+    console.log(req.query);
     Products.find({}, (err, products) => {
+      // let filterProduct = products.filter((product)=>{
+      //   return product.path[0].split('/')[2] == req.query.name
+      // })
       if (err) return err;
       res.setHeader("content-type", "application/json");
       res.statusCode = 200;
@@ -29,9 +33,9 @@ Router.route("/")
     });
   })
   .post(upload.single("photo"), (req, res, next) => {
-    const { name, price,path, description } = req.body;
-    console.log(req.file)
-    console.log(req.body)
+    const { name, price, path, description } = req.body;
+    console.log(req.file);
+    console.log(req.body);
     Products.create(
       {
         name,
@@ -51,26 +55,30 @@ Router.route("/")
         });
       }
     );
-  })
+  });
 
-
-  Router.route("/:id")
-  .patch(upload.single("photo"), errAsync( async(req, res, next) => {
-     if(req.file) req.body.image=req.file.filename
-    const food = await Products.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
-  })
-  res.status(200).json({
-      success: true,
-     food
-  })
-  }))
-  .delete(errAsync(async (req, res, next) => {
-    const product = await Products.findByIdAndDelete(req.params.id)
-    res.status(204).json({
+Router.route("/:id")
+  .patch(
+    upload.single("photo"),
+    errAsync(async (req, res, next) => {
+      if (req.file) req.body.image = req.file.filename;
+      const food = await Products.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+      });
+      res.status(200).json({
         success: true,
+        food
+      });
     })
-}))
+  )
+  .delete(
+    errAsync(async (req, res, next) => {
+      const product = await Products.findByIdAndDelete(req.params.id);
+      res.status(204).json({
+        success: true
+      });
+    })
+  );
 
 module.exports = Router;

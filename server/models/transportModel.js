@@ -10,7 +10,7 @@ const Tranportation = mongoose.Schema({
         type: Number,
         required: [true, "A tranport Must have a PhoneNumber"]
     },
-    facilities: [String ],
+    facilities: [String],
     ticketPrice: {
         type:{
             type:String,

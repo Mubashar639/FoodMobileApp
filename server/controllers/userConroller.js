@@ -44,7 +44,7 @@ exports.userLogin = errCatch(async (req, res, next) => {
 exports.userRegister = errCatch(async (req, res, next) => {
     user = await userModel.create(req.body)
 
-    const token = gettoken(user._id,user,name)
+    const token = gettoken(user._id,user.name)
     res.status(201).json({
         success: true,
         token,

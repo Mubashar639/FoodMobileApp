@@ -9,7 +9,7 @@ import {
   ScrollView
 } from "react-native";
 import { Accordion, Text, ListItem } from "native-base";
-import { EvilIcons, AntDesign, Entypo } from "@expo/vector-icons";
+import { EvilIcons, AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -20,76 +20,19 @@ class FacilitiesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isContentVisible: false,
-      contents: [
-        {
-          title: "Albion correctional facility",
-          TransportationDetails: [
-            {
-              address: "135 State Street Auturn,New York",
-
-              phone: "(585) 891-1343",
-              gender: "Male",
-              security: "Medium"
-            }
-          ]
-        },
-        {
-          title: "Albion correctional facility",
-          TransportationDetails: [
-            {
-              address: "135 State Street Auturn,New York",
-
-              phone: "(585) 891-1343",
-              gender: "Male",
-              security: "Medium"
-            }
-          ]
-        },
-        {
-          title: "Albion correctional facility",
-          TransportationDetails: [
-            {
-              address: "135 State Street Auturn,New York",
-
-              phone: "(585) 891-1343",
-              gender: "Male",
-              security: "Medium"
-            }
-          ]
-        },
-        {
-          title: "Albion correctional facility",
-          TransportationDetails: [
-            {
-              address: "135 State Street Auturn,New York",
-
-              phone: "(585) 891-1343",
-              gender: "Male",
-              security: "Medium"
-            }
-          ]
-        },
-        {
-          title: "Albion correctional facility",
-          TransportationDetails: [
-            {
-              address: "135 State Street Auturn,New York",
-
-              phone: "(585) 891-1343",
-              gender: "Male",
-              security: "Medium"
-            }
-          ]
-        }
-      ]
+      // isContentVisible: false,
+      facilities: this.props.facilities
     };
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.facilities.length !== this.props.facilities.length) {
+      this.setState({ facilities: this.props.facilities });
+    }
+  }
   _renderHeader = (items, expanded) => {
     return (
       <View style={styles.headerStyle}>
-        <Text style={styles.headerTitle}>{items.title}</Text>
+        <Text style={styles.headerTitle}>{items.name}</Text>
         <View style={styles.arrows}>
           {expanded ? (
             <AntDesign name="caretup" color={"#27368e"} size={hp("2.5")} />
@@ -103,26 +46,33 @@ class FacilitiesList extends React.Component {
   _renderContent = items => {
     return (
       <View style={styles.contentStyle}>
-        {items.TransportationDetails.map((item, i) => (
-          <View key={i}>
-            <ListItem>
-              <Text style={styles.textStyle}>Facilities: Details</Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>Address:  {item.address}</Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>Phone:  {item.phone}</Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>Male/Female:  {item.gender}</Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>Security:  {item.security}</Text>
-            </ListItem>
-        
-          </View>
-        ))}
+        <View>
+          <ListItem>
+            <Text style={styles.textStyle}>Facilities: Details</Text>
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>Address: {items.address}</Text>
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>Phone: {items.phone}</Text>
+            <Image
+              source={require("../assets/icons/whatsapp.png")}
+              style={{
+                width: wp("6.5"),
+                height: hp("3.5"),
+                left: wp("30")
+              }}
+            />
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>Male/Female: {items.sexType}</Text>
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>
+              Security: {items.securityLevel}
+            </Text>
+          </ListItem>
+        </View>
       </View>
     );
   };
@@ -135,9 +85,9 @@ class FacilitiesList extends React.Component {
       >
         <View style={styles.container}>
           <ScrollView style={styles.scroll}>
-            {this.state.contents ? (
+            {this.state.facilities ? (
               <Accordion
-                dataArray={this.state.contents}
+                dataArray={this.state.facilities}
                 // expanded={0}
                 renderHeader={this._renderHeader}
                 renderContent={this._renderContent}

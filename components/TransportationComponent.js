@@ -20,64 +20,15 @@ class Transportation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isContentVisible: false,
-      contents: [
-        {
-          title: "Title 1",
-          TransportationDetails: [
-            {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
-            }
-          ]
-        },
-        {
-          title: "Title 1",
-          TransportationDetails: [
-            {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
-            }
-          ]
-        },
-        {
-          title: "Title 1",
-          TransportationDetails: [
-            {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
-            }
-          ]
-        },
-        {
-          title: "Title 1",
-          TransportationDetails: [
-            {
-              facilities: "tansportataions",
-              dayOfOperation: ["mon", "tus", "wed"],
-              ticketPrice: 500,
-              pickUpLocation: "chak no 197 rn faisabadad",
-              phoneNo: 15645148545
-            }
-          ]
-        }
-      ]
+      // isContentVisible: false,
+      transports: this.props.transports
     };
   }
 
   _renderHeader = (items, expanded) => {
     return (
       <View style={styles.headerStyle}>
-        <Text style={styles.headerTitle}>{items.title}</Text>
+        <Text style={styles.headerTitle}>{items.name}</Text>
         <View style={styles.arrows}>
           {expanded ? (
             <AntDesign name="caretup" color={"#27368e"} size={hp("2.5")} />
@@ -91,33 +42,80 @@ class Transportation extends React.Component {
   _renderContent = items => {
     return (
       <View style={styles.contentStyle}>
-        {items.TransportationDetails.map((item, i) => (
-          <View key={i}>
-            <ListItem>
-              <Text style={styles.textStyle}>
-                Facilities: {item.facilities}
+        <View>
+          <ListItem>
+            <Text style={styles.textStyle}>
+              Facilities:{" "}
+              {items.facilities.map((item, i) => {
+                return (
+                  <Text style={styles.textStyle} key={i}>
+                    {item},
+                  </Text>
+                );
+              })}
+            </Text>
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>Day Of Operation: </Text>
+            {items.operationDays.map((item, i) => {
+              return (
+                <Text
+                  style={{
+                    width: wp("9"),
+                    height: wp("6"),
+                    backgroundColor: "#2f398f",
+                    marginLeft: hp("1"),
+                    paddingTop: wp("0.3"),
+                    textAlign: "center",
+                    color: "white",
+                    borderRadius: 7
+                  }}
+                  key={i}
+                >
+                  {item}
+                </Text>
+              );
+            })}
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>
+              Ticket Prices:{" "}
+              <Text style={styles.textStyle}>{items.ticketPrice.type} - </Text>
+              <Text
+                style={{
+                  fontSize: wp("3"),
+                  fontWeight: "bold",
+                  color: "red"
+                }}
+              >
+                ${items.ticketPrice.price}
               </Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>
-                DayOfOperation: MON, TUE ,WED{" "}
-              </Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>
-                TicketPrice: {item.ticketPrice}
-              </Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>
-                PickUpLocation: {item.pickUpLocation}
-              </Text>
-            </ListItem>
-            <ListItem>
-              <Text style={styles.textStyle}>PhoneNo: {item.phoneNo}</Text>
-            </ListItem>
-          </View>
-        ))}
+            </Text>
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>
+              Pick Up Locations:{" "}
+              {items.pickUpLocation.map((item, i) => {
+                return (
+                  <Text style={styles.textStyle} key={i}>
+                    {item},
+                  </Text>
+                );
+              })}
+            </Text>
+          </ListItem>
+          <ListItem>
+            <Text style={styles.textStyle}>Phone Number: {items.phone}</Text>
+            <Image
+              source={require("../assets/icons/whatsapp.png")}
+              style={{
+                width: wp("6.5"),
+                height: hp("3.5"),
+                left: wp("30")
+              }}
+            />
+          </ListItem>
+        </View>
       </View>
     );
   };
@@ -130,9 +128,9 @@ class Transportation extends React.Component {
       >
         <View style={styles.container}>
           <ScrollView style={styles.scroll}>
-            {this.state.contents ? (
+            {this.state.transports ? (
               <Accordion
-                dataArray={this.state.contents}
+                dataArray={this.state.transports}
                 // expanded={0}
                 renderHeader={this._renderHeader}
                 renderContent={this._renderContent}
@@ -152,7 +150,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignContent: "center",
+    alignContent: "center"
   },
 
   dropDownItem: {
@@ -181,8 +179,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "auto",
     paddingLeft: hp("1"),
-    backgroundColor:'#fbf4e4'
-
+    backgroundColor: "#fbf4e4"
   },
   contentText: {
     fontSize: hp("2"),
@@ -204,11 +201,8 @@ const styles = StyleSheet.create({
   backImg: {
     flex: 1,
     justifyContent: "center",
-    alignContent: "center",
- 
+    alignContent: "center"
   }
 });
-
-
 
 export default Transportation;

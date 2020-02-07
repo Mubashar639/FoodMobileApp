@@ -32,18 +32,17 @@ const LoginActionCreater = creds => dispatch => {
 
   const { name, email, password, birth, gender } = creds;
   dispatch(login_loading());
-  axios
-    .post("http://localhost:5000/api/users/signup", {
+  baseUrl
+    .post("http://10.0.2.2:5000/api/users/signup", {
       name,
       email,
       password,
       birth,
       gender
-    },{
-      headers:clea
-    }
-    )
+    })
     .then(res => {
+      console.log(res);
+
       if (res.status === 200) {
         localStorage.setItem("token", res.data.token);
         // const user = verifyToken();

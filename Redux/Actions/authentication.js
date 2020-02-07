@@ -46,6 +46,11 @@ export const facility_update = (facility)=>({
     facility
    
 })
+export const facility_filter = (facility)=>({
+    type:actionTypes.FACILITY_FILTER,
+    facility
+   
+})
 
 
 
@@ -69,6 +74,11 @@ export const transport_remove = (transport)=>({
 export const transport_update = (transport)=>({
     type:actionTypes.transport_UPDATE,
     transport
+   
+})
+export const FilterTransport = (state)=>({
+    type:actionTypes.transport_FILTER,
+    state
    
 })
 

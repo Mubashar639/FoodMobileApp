@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Image} from 'react-native'
 
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";

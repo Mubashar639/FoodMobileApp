@@ -5,7 +5,7 @@ const Categories = require("../models/cataModel");
 
 Router.route("/")
   .get( (req, res, next) => {
-    Categories.find({}, (err, categories) => {
+    Categories.find({},(err, categories) => {
       if (err) return next(err);
       res.setHeader("content-type", "application/json");
       res.statusCode = 200;

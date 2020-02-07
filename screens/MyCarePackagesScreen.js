@@ -5,6 +5,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
+import { connect } from "react-redux";
+
 //Import Components
 import MyCarePackages from "../components/MyCarePackagesComponent";
 import MyCarePackagesHeader from '../headers/MyCarePackagesHeader'
@@ -32,7 +34,7 @@ class MyCarePackagesScreen extends React.Component {
     };
   };
   render() {
-    return <MyCarePackages navigation={this.props.navigation} />;
+    return <MyCarePackages category = {this.props.category.category} navigation={this.props.navigation} />;
   }
 }
 
@@ -42,5 +44,10 @@ const styles = StyleSheet.create({
   },
   
 });
-
-export default MyCarePackagesScreen;
+mapStateToProps = state => {
+  // console.log(state.Category)
+  return {
+    category: state.Category
+  };
+};
+export default connect(mapStateToProps)(MyCarePackagesScreen);

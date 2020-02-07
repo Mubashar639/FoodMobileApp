@@ -4,7 +4,8 @@ import { Card, CardItem, Radio, Left, Button } from "native-base";
 
 class Products extends PureComponent {
   state = {
-    productQty: 0
+    productQty: 0,
+    foods: this.props.foods ? this.props.foods:[]
   };
   addProductQty = () => {
     this.setState({ productQty: this.state.productQty + 1 });
@@ -15,58 +16,73 @@ class Products extends PureComponent {
       : this.setState({ productQty: 0 });
   };
   render() {
+  // console.log('this is product root',this.props.food)
+
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Card style={styles.card}>
-            <CardItem style={styles.cardItemStyle}>
-              <View style={styles.containerView}>
-                <View style={styles.imageCon}>
-                  <Image
-                    style={styles.productImage}
-                    source={require("../assets/images/forgetpasswordscreenlogo.png")}
-                  />
-                </View>
-                <View style={styles.productDetails}>
-                  <View style={styles.detailsContainer}>
-                    <Text style={styles.productTitle}>Pepsi cola</Text>
-                    <Text style={styles.productTitle}>(12 Bottle)</Text>
-                    <Text style={styles.productSize}>250ml</Text>
-                    <View style={styles.productBtnCon}>
-                      <Button
-                        style={styles.nagtiveBtn}
-                        onPress={this.subProductQty}
-                      >
-                        <Text style={styles.nagtiveBtnText}>-</Text>
-                      </Button>
-                      <Text style={styles.productQ}>
-                        {this.state.productQty > 0 ? this.state.productQty : 0}
-                      </Text>
-                      <Button
-                        style={styles.plusBtn}
-                        onPress={this.addProductQty}
-                      >
-                        <Text style={styles.plusBtnText}>+</Text>
-                      </Button>
+          {this.state.foods.map(food => {
+            return (
+              <Card key = {food._id} style={styles.card}>
+                <CardItem style={styles.cardItemStyle}>
+                  <View style={styles.containerView}>
+                    <View style={styles.imageCon}>
+                      <Image
+                        style={styles.productImage}
+                        source={{uri:food.image}}
+                      />
+                    </View>
+                    <View style={styles.productDetails}>
+                      <View style={styles.detailsContainer}>
+                        <Text style={styles.productTitle}>{food.name}</Text>
+                        <Text style={styles.productTitle}>(12 Bottle)</Text>
+                        <Text style={styles.productSize}>
+                          {food.description}
+                        </Text>
+                        <View style={styles.productBtnCon}>
+                          <Button
+                            style={styles.nagtiveBtn}
+                            onPress={this.subProductQty}
+                          >
+                            <Text style={styles.nagtiveBtnText}>-</Text>
+                          </Button>
+                          <Text style={styles.productQ}>
+                            {this.state.productQty > 0
+                              ? this.state.productQty
+                              : 0}
+                          </Text>
+                          <Button
+                            style={styles.plusBtn}
+                            onPress={this.addProductQty}
+                          >
+                            <Text style={styles.plusBtnText}>+</Text>
+                          </Button>
+                        </View>
+                      </View>
+
+                      <View style={styles.productPriceCon}>
+                            <Text style={styles.productPrice}>${food.price}</Text>
+                        <Button small style={styles.productAddBtn}>
+                          <Text style={styles.productAddBtnText}>Add</Text>
+                        </Button>
+                      </View>
                     </View>
                   </View>
-
-                  <View style={styles.productPriceCon}>
-                    <Text style={styles.productPrice}>$60</Text>
-                    <Button small style={styles.productAddBtn}>
-                      <Text style={styles.productAddBtnText}>Add</Text>
-                    </Button>
-                  </View>
-                </View>
-              </View>
-            </CardItem>
-          </Card>
+                </CardItem>
+              </Card>
+            );
+          })}
         </ScrollView>
         <View style={styles.bottomBtnCon}>
           <Button style={styles.bottomBtn} large>
             <Text style={styles.bottomBtnText}>Add More</Text>
           </Button>
-          <Button onPress = {()=>this.props.navigation.navigate('MyCart')} success style={styles.bottomBtn} large>
+          <Button
+            onPress={() => this.props.navigation.navigate("MyCart")}
+            success
+            style={styles.bottomBtn}
+            large
+          >
             <Text style={styles.bottomBtnText}>View Cart</Text>
           </Button>
         </View>

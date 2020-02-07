@@ -11,6 +11,9 @@ import TransportationHeader from '../headers/TransportationHeader'
 
 
 class TransportationSearchScreen extends PureComponent {
+  state = {
+    name:"search"
+  }
     static navigationOptions = ({ navigation }) => {
         return {
           // title: "TRANSPORTAION",
@@ -31,13 +34,21 @@ class TransportationSearchScreen extends PureComponent {
             />
           ),
     
-          headerTitle: () => <TransportationHeader />,
+          headerTitle: () => <TransportationHeader getState = {navigation.state} />,
         };
       };
+      componentDidMount(){
+        this.props.navigation.setParams({
+          myTitle: this.getValues
+         })
+      }
+      getValues = (value)=>{
+        console.log('value',value)
+      }
   render() {
     return (
       <View>
-        <TransportationSearch />
+        <TransportationSearch navigation={this.props.navigation} />
       </View>
     );
   }

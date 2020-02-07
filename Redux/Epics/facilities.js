@@ -13,20 +13,22 @@ import {
 import axios from "axios";
 
 export const GetFacilities = () => dispatch => {
-  dispatch(facility_loading());
+  // dispatch(facility_loading());
   axios
-    .get("http://localhost:5000/api/facility")
+    .get("http://10.0.2.2:8000/api/facility")
     .then(res => {
+      // console.log("Before", res);
+
       if (res.status === 200) {
         dispatch(facility_success(res.data.data.facilitys));
         // message.success("success");
-        // console.log(res)
+        // console.log(res);
       }
     })
     .catch(err => {
       // message.error(err.message);
       dispatch(facility_failed("Some thing went wrong"));
-      console.log(err);
+      // console.log(err);
     });
 };
 

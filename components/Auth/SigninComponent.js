@@ -9,6 +9,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
+import {GetFacilities}from '../../Redux/Epics/facilities'
+import { connect } from "react-redux";
 
 class Signin extends React.Component {
   componentDidMount() {
@@ -186,7 +188,7 @@ class Signin extends React.Component {
         <View style={styles.buttonStyle}>
           <Button
             style={{ justifyContent: "center" }}
-            onPress={() => this.props.navigation.navigate("Home")}
+            onPress={() => this.props.navigation.navigate('Home')}
           >
             <Text style={styles.buttonTextStyle}>Sign In</Text>
           </Button>
@@ -217,4 +219,4 @@ const styles = StyleSheet.create({
     // marginLeft: hp("25")
   }
 });
-export default Signin;
+export default connect()(Signin);

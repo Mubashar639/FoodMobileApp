@@ -10,11 +10,13 @@ export const FACILITY_ADD="FACILITY_ADD"
 export const FACILITY_REMOVE="FACILITY_REMOVE"
 
 export const FACILITY_UPDATE="FACILITY_UPDATE"
+export const FACILITY_FILTER="FACILITY_FILTER"
 
 export const transport_SUCCESS = "transport_SUCCESS"
 export const transport_ADD="transport_ADD"
 export const transport_REMOVE="transport_REMOVE"
 export const transport_UPDATE="transport_UPDATE"
+export const transport_FILTER="transport_FILTER"
 
 
 export const   FOOD_SUCCESS = "FOOD_SUCCESS"

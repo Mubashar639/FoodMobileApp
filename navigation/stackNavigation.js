@@ -55,6 +55,7 @@ const AppStackNavigator = createStackNavigator(
     },
     FacilitiesSearch: {
       screen: TransportationSearchScreen
+      // screen: TransportationScreen
     },
     Transport: {
       screen: TransportationScreen

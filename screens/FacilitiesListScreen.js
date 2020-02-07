@@ -12,15 +12,16 @@ import FacilitiesHeader from "../headers/FacilitiesListHeader";
 //Redux config
 import { connect } from "react-redux";
 import { GetFacilities } from "../Redux/Epics/facilities";
+import { facility_filter } from "../Redux/Actions/authentication";
 
 class FacilitiesListScreen extends React.Component {
-  constructor(){
-    super()
-      this.state  = {
-        facilities:[]
-      
-    }
+  constructor() {
+    super();
+    this.state = {
+      facilities: []
+    };
   }
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: "FACILITIES",
@@ -38,17 +39,41 @@ class FacilitiesListScreen extends React.Component {
         />
       ),
 
-      headerTitle: () => <FacilitiesHeader />
+      headerTitle: () => (
+        <FacilitiesHeader getFilteredFacilities={navigation.state.params} />
+      )
     };
   };
 
   componentDidMount() {
- let  re =  this.props.dispatch(GetFacilities())
-    console.log("Facilties",re);
+    this.props.navigation.setParams({
+      getFilteredFacilities: this.getFilteredFacilities
+    });
   }
 
+  getFilteredFacilities = e => {
+    //  this.props.dispatch(facility_filter(e))
+    let filter = this.props.Facility.facilities.filter(facility => {
+      return facility.name.toLowerCase().indexOf(e.toLowerCase()) !== -1;
+    });
+    console.log(filter);
+
+    this.setState({
+      facilities: filter
+    });
+    //  this.forceUpdate()
+  };
+
   render() {
-    return <FacilitiesList navigation={this.props.navigation} />;
+    return (
+      <FacilitiesList
+        facilities={
+          this.state.facilities.length
+            ? this.state.facilities
+            : this.props.Facility.facilities
+        }
+      />
+    );
   }
 }
 
@@ -57,9 +82,10 @@ const styles = StyleSheet.create({
     marginLeft: hp("2.5")
   }
 });
-const mapStateToProps = (state) =>{
-return {
-  facilities :state.Facility.facilities
-}
-}
+const mapStateToProps = state => {
+  // console.log(state.Facility)
+  return {
+    Facility: state.Facility
+  };
+};
 export default connect(mapStateToProps)(FacilitiesListScreen);

@@ -7,7 +7,8 @@ import {
 } from "react-native-responsive-screen";
 //Import Components
 import Transportation from "../components/TransportationComponent";
-import TransportationHeader from '../headers/TransportationHeader'
+import TransportationHeader from "../headers/TransportationHeader";
+import { connect } from "react-redux";
 
 class TransportationScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -16,31 +17,39 @@ class TransportationScreen extends React.Component {
       headerStyle: {
         backgroundColor: "#fceccf",
         height: hp("8.5")
-
       },
       headerLeft: () => (
         <AntDesign
-        onPress={() => navigation.goBack()}
-        style={styles.leftButton}
-        name="left"
-        size={hp("3")}
-        color="gray"
+          onPress={() => navigation.goBack()}
+          style={styles.leftButton}
+          name="left"
+          size={hp("3")}
+          color="gray"
         />
       ),
 
-      headerTitle: () => <TransportationHeader />,
+      headerTitle: () => <TransportationHeader />
     };
   };
   render() {
-    return <Transportation navigation={this.props.navigation} />;
+    return (
+      <Transportation
+        transports={this.props.transports.transports}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }
 
 const styles = StyleSheet.create({
   leftButton: {
-    marginLeft: hp('2.5')
-  },
-  
+    marginLeft: hp("2.5")
+  }
 });
-
-export default TransportationScreen;
+mapStateToProps = state => {
+  // console.log(state)
+  return {
+    transports: state.Transport
+  };
+};
+export default connect(mapStateToProps)(TransportationScreen);
